@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:13:32 by gfernand          #+#    #+#             */
-/*   Updated: 2024/01/23 16:31:55 by gfernand         ###   ########.fr       */
+/*   Updated: 2024/01/23 17:48:02 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,27 @@
 
 void exit_code(char *s);
 void	check_map(char *s);
+void	window(t_mlx *mlx);
 
 int	main(int arg, char **argv)
 {
+	t_mlx	mlx;
+
 	if (arg < 2)
 		exit_code("Error: 2 arguments are spected\n");
 	check_map(argv[1]);
-
+	mlx.mlx = mlx_init();
+	mlx.win = mlx_new_window(mlx.mlx, 900, 900, "cub3D");
+	if (mlx.win == NULL)
+	{
+		free(mlx.win);
+		exit_code("Wrong window\n");
+	}
+	mlx.img = mlx_new_image(mlx.mlx, 900, 900);
+	window(&mlx);
+	return (0);
 }
+
 
 void exit_code(char *s)
 {

@@ -1,6 +1,6 @@
 NAME = cub3D
 
-SRC =	src/main.c \
+SRC =	src/main.c src/keyboard.c\
 
 CC = gcc
 RM = rm -f
