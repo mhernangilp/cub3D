@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:01:44 by gfernand          #+#    #+#             */
-/*   Updated: 2024/01/23 17:48:48 by gfernand         ###   ########.fr       */
+/*   Updated: 2024/01/29 17:19:13 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "libft.h"
 # include "minilibx/mlx.h"
 
-typedef struct	s_mlx
+typedef struct s_mlx
 {
 	void	*mlx;
 	void	*win;
@@ -29,5 +29,9 @@ typedef struct	s_mlx
 }	t_mlx;
 
 void	window(t_mlx *mlx);
+void	exit_mssg(char *s);
+
+/* PARSE */
+void	check_map(char *s);
 
 #endif
