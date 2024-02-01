@@ -32,6 +32,6 @@ void	window(t_mlx *mlx);
 void	exit_mssg(char *s);
 
 /* PARSE */
-void	check_map(char *s);
+void	parse_map(char *s);
 
 #endif
