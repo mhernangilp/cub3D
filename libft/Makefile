@@ -87,7 +87,7 @@ bonus: ${B_OBJ} ${INCLUDE}
 
 clean:
 	rm -f ${OBJ} ${B_OBJ}
-	@echo $(RED)"libft OBJS were deleted"$(NO_COLOR)
+	@echo $(RED)"libft OBJS deleted"$(NO_COLOR)
 
 fclean: clean
 	rm -f ${NAME}

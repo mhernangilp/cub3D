@@ -34,9 +34,11 @@ $(NAME): $(LIBFT) $(OBJS)
 	$(CC) $(FLAGS) -I $(LIBFT_PATH) -c $< -o $@
 
 clean:
+	@make clean -C minilibx/
+	@echo $(RED)"Minilibx OBJS deleted"$(NO_COLOR)
 	@make clean -C $(LIBFT_PATH)
 	$(RM) $(OBJS)
-	@echo $(RED)"cub3D OBJS were deleted"$(NO_COLOR)
+	@echo $(RED)"cub3D OBJS deleted"$(NO_COLOR)
 
 fclean: clean
 	$(RM) $(LIBFT)
