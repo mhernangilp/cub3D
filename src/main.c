@@ -24,11 +24,12 @@ int	main(int arg, char **argv)
 	atexit(leaks);
 	if (arg < 2)
 		exit_mssg("Error: 2 arguments are spected\n");
-	check_map(argv[1]);
+	parse_map(argv[1]);
 	mlx.mlx = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx, 900, 600, "cub3D");
 	if (mlx.win == NULL)
 		exit_mssg("Wrong window\n");
+	// execution;
 	window(&mlx);
 	return (0);
 }

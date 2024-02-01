@@ -14,7 +14,7 @@
 
 //static void	parse_map(int fd);
 
-void	check_map(char *s)
+void	parse_map(char *s)
 {
 	int	i;
 	int	fd;
