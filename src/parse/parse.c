@@ -12,31 +12,26 @@
 
 #include "../../cub3D.h"
 
-//static void	parse_map(int fd);
-
-void	parse(char *s)
+void	parse(char *file, t_data *data)
 {
 	int	fd;
 	int	fd_dir;
 
-	if (ft_strrncmp(s, ".cub", 4))
+	if (ft_strrncmp(file, ".cub", 4))
 		exit_mssg("WRONG MAP: invalid format\n");
-	fd = open(s, O_RDONLY);
+	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		exit_mssg("WRONG MAP: error opening file\n");
 	else
 	{
-		fd_dir = open(s, O_DIRECTORY);
+		fd_dir = open(file, O_DIRECTORY);
 		if (fd_dir != -1)
 			exit_mssg("WRONG MAP: path is a directory\n");
 		close(fd_dir);
 	}
-	//parse_map(fd);
+	//parse_texture(fd, data);
+	//parse_color(fd, data);
+	//parse_map(fd, data);
 	close(fd);
 	return ;
 }
-/*
-static void	parse_map(int fd)
-{
-}
-*/

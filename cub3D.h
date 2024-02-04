@@ -21,6 +21,31 @@
 # include "libft.h"
 # include "minilibx/mlx.h"
 
+typedef struct s_map
+{
+	char	**map;
+	int		rows;
+	int		cols;
+}	t_map;
+
+typedef struct RGB
+{
+	int	R;
+	int	G;
+	int	B;
+}	t_RGB;
+
+typedef struct data
+{
+	char	*NO;
+	char	*SO;
+	char	*WE;
+	char	*EA;
+	t_RGB	F;
+	t_RGB	C;
+	t_map	map;
+}	t_data;
+
 typedef struct s_mlx
 {
 	void	*mlx;
@@ -32,7 +57,7 @@ void	window(t_mlx *mlx);
 void	exit_mssg(char *s);
 
 /* PARSE */
-void	parse(char *s);
+void	parse(char *file, t_data *data);
 
 /* PARSE_UTILS */
 int	ft_strrncmp(char *s1, char *s2, int n);
