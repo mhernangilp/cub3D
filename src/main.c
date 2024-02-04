@@ -24,7 +24,7 @@ int	main(int arg, char **argv)
 	atexit(leaks);
 	if (arg < 2)
 		exit_mssg("Error: 2 arguments are spected\n");
-	parse_map(argv[1]);
+	parse(argv[1]);
 	mlx.mlx = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx, 900, 600, "cub3D");
 	if (mlx.win == NULL)

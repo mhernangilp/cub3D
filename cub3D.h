@@ -32,6 +32,9 @@ void	window(t_mlx *mlx);
 void	exit_mssg(char *s);
 
 /* PARSE */
-void	parse_map(char *s);
+void	parse(char *s);
+
+/* PARSE_UTILS */
+int	ft_strrncmp(char *s1, char *s2, int n);
 
 #endif
