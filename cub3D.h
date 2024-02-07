@@ -21,6 +21,9 @@
 # include "libft.h"
 # include "minilibx/mlx.h"
 
+# define WIDTH 1200
+# define HEIGHT 675
+
 typedef struct s_map
 {
 	char	**map;
@@ -46,14 +49,14 @@ typedef struct data
 	t_map	map;
 }	t_data;
 
-typedef struct s_mlx
+typedef struct s_cub
 {
 	void	*mlx;
 	void	*win;
 	void	*img;
-}	t_mlx;
+}	t_cub;
 
-void	window(t_mlx *mlx);
+void	window(t_cub *cub);
 void	exit_mssg(char *s);
 
 /* PARSE */
@@ -61,5 +64,9 @@ void	parse(char *file, t_data *data);
 
 /* PARSE_UTILS */
 int	ft_strrncmp(char *s1, char *s2, int n);
+
+/* EXECUTION */
+void	execution();
+
 
 #endif
