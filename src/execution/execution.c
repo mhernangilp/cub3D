@@ -9,5 +9,7 @@ void	execution(void)
 	if (!cub.win)
 		exit_mssg("Wrong window\n");
 	cub.img = new_image(&cub, WIDTH, HEIGHT);
+	//position of player
+	//keys to move player
 	window(&cub);
 }
