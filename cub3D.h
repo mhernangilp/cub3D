@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:01:44 by gfernand          #+#    #+#             */
-/*   Updated: 2024/01/29 17:19:13 by gfernand         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:00:58 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include "libft.h"
 # include "minilibx/mlx.h"
 
-# define WIDTH 1200
-# define HEIGHT 675
+# define W_WIDTH 1200
+# define W_HEIGHT 675
 
 typedef struct s_map
 {
@@ -54,6 +54,8 @@ typedef struct s_cub
 	void	*mlx;
 	void	*win;
 	void	*img;
+	int		height;
+	int		width;
 }	t_cub;
 
 void	window(t_cub *cub);

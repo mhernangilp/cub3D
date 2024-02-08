@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 15:12:49 by gfernand          #+#    #+#             */
-/*   Updated: 2024/01/29 17:20:03 by gfernand         ###   ########.fr       */
+/*   Updated: 2024/02/08 13:54:07 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	parse(char *file, t_data *data)
 	//parse_texture(fd, data);
 	//parse_color(fd, data);
 	//parse_map(fd, data);
+	(void) data;
 	close(fd);
 	return ;
 }
