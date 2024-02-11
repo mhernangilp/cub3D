@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mhernang <mhernang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:13:32 by gfernand          #+#    #+#             */
-/*   Updated: 2024/01/29 18:56:51 by gfernand         ###   ########.fr       */
+/*   Updated: 2024/02/11 17:18:00 by mhernang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ int	main(int arg, char **argv)
 
 	atexit(leaks);
 	if (arg < 2)
-		exit_mssg("Error: 2 arguments are spected\n");
+		exit_mssg("Error\n2 arguments are spected\n");
 	parse(argv[1], &data);
 	mlx.mlx = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx, 900, 600, "cub3D");
 	if (mlx.win == NULL)
-		exit_mssg("Wrong window\n");
+		exit_mssg("Error\nWrong window\n");
 	//execution;
 	window(&mlx);
 	return (0);
@@ -43,4 +43,10 @@ void	exit_mssg(char *s)
 	while (s[++i])
 		write(2, (s + i), 1);
 	exit(1);
+}
+
+void	error_msg(char *err)
+{
+	perror(err);
+	exit (1);
 }

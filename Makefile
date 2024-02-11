@@ -1,6 +1,6 @@
 NAME = cub3D
 
-SRC =	src/main.c src/keyboard.c src/parse/parse.c src/parse/parse_utils.c\
+SRC =	src/main.c src/keyboard.c src/parse/parse.c src/parse/parse_utils.c src/parse/process.c\
 
 CC = gcc
 RM = rm -f
@@ -10,6 +10,11 @@ LIBFT_PATH = libft/
 LIBFT = libft/libft.a
 MINILIBX = minilibx/libmlx.a
 MINIFLG = -L./minilibx -lmlx -framework OpenGL -framework AppKit
+
+GNL_SRC = get_next_line_bonus.c get_next_line_utils_bonus.c
+GNL_PATH = gnl/bonus/
+GNL = $(addprefix $(GNL_PATH), $(GNL_SRC))
+GNL_OBJ = $(GNL:.c=.o)
 
 OBJS = $(SRC:.c=.o)
 
@@ -23,10 +28,10 @@ all: $(NAME)
 $(LIBFT):
 	@make -C $(LIBFT_PATH)
 
-$(NAME): $(LIBFT) $(OBJS)
+$(NAME): $(LIBFT) $(OBJS) $(GNL_OBJ)
 	@echo $(PINK)"Generating executable..."$(NO_COLOR)
 	@make -C minilibx
-	$(CC) $(FLAGS) $(OBJS) $(LIBFT) -I $(LIBFT_PATH) $(MINILIBX) $(MINIFLG) -o $(NAME)
+	$(CC) $(FLAGS) $(OBJS) $(LIBFT) $(GNL_OBJ) -I $(LIBFT_PATH) $(MINILIBX) $(MINIFLG) -o $(NAME)
 	@echo $(PINK)"$(NAME) Generated!"$(NO_COLOR)
 
 %.o: %.c
@@ -38,6 +43,7 @@ clean:
 	@echo $(RED)"Minilibx OBJS deleted"$(NO_COLOR)
 	@make clean -C $(LIBFT_PATH)
 	$(RM) $(OBJS)
+	$(RM) $(GNL_OBJ)
 	@echo $(RED)"cub3D OBJS deleted"$(NO_COLOR)
 
 fclean: clean
