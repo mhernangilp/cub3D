@@ -16,6 +16,15 @@ void	do_loop_hook2(CFRunLoopTimerRef observer, void * info)
   ((mlx_ptr_t *)info)->loop_hook(((mlx_ptr_t *)info)->loop_hook_data);
 }
 
+void mlx_del(void *mlx_ptr)
+{
+	mlx_ptr_t *ptr;
+
+	ptr = (mlx_ptr_t *)mlx_ptr;
+	free(ptr->font->buffer);
+	free(ptr->font);
+	free(ptr);
+}
 
 void do_loop_flush(CFRunLoopObserverRef observer, CFRunLoopActivity activity, void * info)
 {
@@ -80,10 +89,18 @@ void *mlx_init()
       i += 4;
     }
 
+
+#ifdef	STRINGPUTX11
+  new_mlx->font->vertexes[2] = FONT_WIDTH/1.4;
+  new_mlx->font->vertexes[4] = FONT_WIDTH/1.4;
+  new_mlx->font->vertexes[5] = (-FONT_HEIGHT-1)/1.4;
+  new_mlx->font->vertexes[7] = (-FONT_HEIGHT-1)/1.4;
+#else
   new_mlx->font->vertexes[2] = FONT_WIDTH;
   new_mlx->font->vertexes[4] = FONT_WIDTH;
   new_mlx->font->vertexes[5] = -FONT_HEIGHT-1;
   new_mlx->font->vertexes[7] = -FONT_HEIGHT-1;
+#endif
 
   return ((void *)new_mlx);
 }

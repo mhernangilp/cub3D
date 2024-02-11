@@ -10,33 +10,33 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3D.h"
+#include "../../cub3D.h"
 
-static int	exkey(t_mlx	*mlx);
-static int	keyb(int key, t_mlx *mlx);
+static int	exkey(t_cub	*cub);
+static int	keyb(int key, t_cub *cub);
 
-void	window(t_mlx *mlx)
+void	window(t_cub *cub)
 {
-	mlx_hook(mlx->win, 02, 1L << 0, &keyb, mlx);
-	mlx_hook(mlx->win, 17, 1L < 17, &exkey, mlx);
-	mlx_loop(mlx->mlx);
-	mlx_destroy_window(mlx->mlx, mlx->win);
-	free(mlx->mlx);
+	mlx_hook(cub->win, 02, 1L << 0, &keyb, cub);
+	mlx_hook(cub->win, 17, 1L < 17, &exkey, cub);
+	mlx_loop(cub->mlx);
+	mlx_destroy_window(cub->mlx, cub->win);
+	free(cub->mlx);
 }
 
-static int	exkey(t_mlx	*mlx)
+static int	exkey(t_cub	*cub)
 {
-	mlx_destroy_window(mlx->mlx, mlx->win);
-	mlx->win = NULL;
+	mlx_destroy_window(cub->mlx, cub->win);
+	cub->win = NULL;
 	exit(1);
 }
 
-static int	keyb(int key, t_mlx *mlx)
+static int	keyb(int key, t_cub *cub)
 {
 	if (key == 53)
 	{
-		mlx_destroy_window(mlx->mlx, mlx->win);
-		mlx->win = NULL;
+		mlx_destroy_window(cub->mlx, cub->win);
+		cub->win = NULL;
 		exit(1);
 	}
 	return (0);

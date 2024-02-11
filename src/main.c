@@ -19,19 +19,14 @@ void	leaks(void)
 
 int	main(int arg, char **argv)
 {
-	t_mlx	mlx;
 	t_data	data;
 
 	atexit(leaks);
 	if (arg < 2)
 		exit_mssg("Error\n2 arguments are spected\n");
 	parse(argv[1], &data);
-	mlx.mlx = mlx_init();
-	mlx.win = mlx_new_window(mlx.mlx, 900, 600, "cub3D");
-	if (mlx.win == NULL)
-		exit_mssg("Error\nWrong window\n");
-	//execution;
-	window(&mlx);
+	execution();
+	(void)argv[0];
 	return (0);
 }
 
