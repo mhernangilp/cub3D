@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mhernang <mhernang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:01:44 by gfernand          #+#    #+#             */
-/*   Updated: 2024/01/29 17:19:13 by gfernand         ###   ########.fr       */
+/*   Updated: 2024/02/11 17:24:29 by mhernang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_cub
 
 void	window(t_cub *cub);
 void	exit_mssg(char *s);
+void	error_msg(char *err);
 
 /* PARSE */
 void	parse(char *file, t_data *data);
@@ -65,8 +66,13 @@ void	parse(char *file, t_data *data);
 /* PARSE_UTILS */
 int	ft_strrncmp(char *s1, char *s2, int n);
 
+/* PROCESS*/
+void	process_line(char *line, t_data *data);
+
 /* EXECUTION */
 void	execution();
 
+//gnl
+char	*get_next_line(int fd);
 
 #endif
