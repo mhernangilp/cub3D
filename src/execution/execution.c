@@ -20,14 +20,20 @@ void	execution(void)
 	cub.win = mlx_new_window(cub.mlx, W_WIDTH, W_HEIGHT, "cub3D");
 	if (!cub.win)
 		exit_mssg("Wrong window\n");
-	cub.img = mlx_xpm_file_to_image(&cub, "../../img.xpm", &cub.width, &cub.height);
+	/*cub.img = mlx_xpm_file_to_image(&cub, "../../img.xpm", &cub.width, &cub.height);
 	if (!cub.img)
 	{
 		printf("Error loading img\n");
 		exit (0);
 	}
 	mlx_put_image_to_window(cub.mlx, cub.win, cub.img, 0, 0);
-	//position of player
-	//keys to move player
+	position of player
+	keys to move player*/
 	window(&cub);
 }
+
+/*void    ray_casting(void)
+{
+	double posx; // posición x inicial
+	double posy; // posición y inicial
+}*/
