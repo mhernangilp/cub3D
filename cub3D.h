@@ -49,6 +49,16 @@ typedef struct data
 	t_map	map;
 }	t_data;
 
+typedef struct s_ray
+{
+	double posx;
+	double posy;
+	double dirx;
+	double diry;
+	double planex;
+	double planey;
+}	t_ray;
+
 typedef struct s_cub
 {
 	void	*mlx;

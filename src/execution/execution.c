@@ -29,11 +29,47 @@ void	execution(void)
 	mlx_put_image_to_window(cub.mlx, cub.win, cub.img, 0, 0);
 	position of player
 	keys to move player*/
+	// al pasar la estructura map obtengo el mapa con una matriz de charse
 	window(&cub);
 }
 
 /*void    ray_casting(void)
 {
-	double posx; // posición x inicial
-	double posy; // posición y inicial
+	t_ray	ray;
+	
+    para(int x = posx; x < weigth; x++)
+    {
+      //calcular la posición y dirección del rayo
+       double cameraX = 2 * x / double(w) - 1; //coordenada x en el espacio de la cámara
+       double rayDirX = dirX + planeX * cameraX;
+      double rayDirY = dirY + planoY * cámaraX;
+	}
+
+	delta_x = sqrt(1 + (rdir_y * rdir_y) / (rdir_x * rdir_x));
+	delta_y = sqrt(1 + (rdir_x * rdir_x) / (rdir_y * rdir_y));
+		Es lo mismo que:
+	deltaDistX = abs(1 / rayDirX);
+	deltaDistY = abs(1 / rayDirY);
+
+	if (rdir_x < 0)
+	{
+    	stepX = -1;
+        sideDistX = (posX - mapX) * delta_x;
+    }
+    else
+    {
+        stepX = 1;
+        sideDistX = (mapX + 1.0 - posx) * delta_x;
+    }
+    if (rdir_y < 0)
+    {
+        stepY = -1;
+        sideDistY = (posY - mapY) * delta_y;
+    }
+    else
+    {
+        stepY = 1;
+        sideDistY = (mapY + 1.0 - posY) * delta_y;
+    }
+
 }*/
