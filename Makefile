@@ -2,6 +2,7 @@ NAME = cub3D
 
 SRC =	src/main.c src/parse/parse.c src/parse/parse_utils.c\
 	src/execution/execution.c src/execution/keyboard.c\
+	src/execution/minimap.c\
 
 CC = gcc
 RM = rm -f

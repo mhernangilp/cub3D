@@ -20,20 +20,17 @@ void	execution(void)
 	cub.win = mlx_new_window(cub.mlx, W_WIDTH, W_HEIGHT, "cub3D");
 	if (!cub.win)
 		exit_mssg("Wrong window\n");
-	/*cub.img = mlx_xpm_file_to_image(&cub, "../../img.xpm", &cub.width, &cub.height);
-	if (!cub.img)
-	{
-		printf("Error loading img\n");
-		exit (0);
-	}
-	mlx_put_image_to_window(cub.mlx, cub.win, cub.img, 0, 0);
-	position of player
-	keys to move player*/
-	// al pasar la estructura map obtengo el mapa con una matriz de charse
+	//cub.img = mlx_new_image(cub.mlx, W_WIDTH, W_HEIGHT);
+	cub.p_x = 100;
+	cub.p_y = 100;
+	drawMap2D(cub);
+	//mlx_put_image_to_window(cub.mlx, cub.win, cub.img, 0, 0);
+
 	window(&cub);
 }
 
-/*void    ray_casting(void)
+/*
+void    ray_casting(void)
 {
 	t_ray	ray;
 	
@@ -72,4 +69,5 @@ void	execution(void)
         sideDistY = (mapY + 1.0 - posY) * delta_y;
     }
 
-}*/
+}
+*/

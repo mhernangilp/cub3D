@@ -23,6 +23,7 @@
 
 # define W_WIDTH 1200
 # define W_HEIGHT 675
+# define PI 3.1415926535
 
 typedef struct s_map
 {
@@ -66,6 +67,8 @@ typedef struct s_cub
 	void	*img;
 	int		height;
 	int		width;
+	int		p_x;
+	int		p_y;
 }	t_cub;
 
 void	window(t_cub *cub);
@@ -79,6 +82,10 @@ int	ft_strrncmp(char *s1, char *s2, int n);
 
 /* EXECUTION */
 void	execution();
+
+void	drawMap2D(t_cub cub);
+void 	box(t_cub cub, int x, int y);
+void 	draw_player(t_cub cub);
 
 
 #endif
