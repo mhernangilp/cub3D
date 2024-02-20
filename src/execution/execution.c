@@ -23,6 +23,7 @@ void	execution(void)
 	//cub.img = mlx_new_image(cub.mlx, W_WIDTH, W_HEIGHT);
 	cub.p_x = 100;
 	cub.p_y = 100;
+	cub.angle = 0;
 	drawMap2D(cub);
 	//mlx_put_image_to_window(cub.mlx, cub.win, cub.img, 0, 0);
 

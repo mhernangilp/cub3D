@@ -40,14 +40,18 @@ static int	keyb(int key, t_cub *cub)
 		exit(1);
 	}
 	if(key== 0)
-		cub->p_x -= 5;
+		cub->p_x -= 3;
  	if(key== 2)
-		cub->p_x += 5;
+		cub->p_x += 3;
  	if(key== 13)
-		cub->p_y -= 5;
+		cub->p_y -= 3;
  	if(key== 1)
-		cub->p_y += 5;
-	if (key == 0 || key == 1 || key == 2 || key == 13)
+		cub->p_y += 3;
+	if(key== 123)
+		cub->angle -= 5;
+	if(key== 124)
+		cub->angle += 5;
+	if (key == 0 || key == 1 || key == 2 || key == 13 || key == 123 || key == 124)
 	{
 		mlx_clear_window(cub->mlx, cub->win);
 		drawMap2D(*cub);

@@ -67,8 +67,15 @@ typedef struct s_cub
 	void	*img;
 	int		height;
 	int		width;
+	
+	int     angle;
 	int		p_x;
 	int		p_y;
+	int     n_x;
+	int     n_y;
+	int     p_a;
+	int     p_dx;
+	int     p_dy;
 }	t_cub;
 
 void	window(t_cub *cub);
@@ -84,7 +91,7 @@ int	ft_strrncmp(char *s1, char *s2, int n);
 void	execution();
 
 void	drawMap2D(t_cub cub);
-void 	box(t_cub cub, int x, int y);
+void 	box(t_cub cub, int x, int y, int color);
 void 	draw_player(t_cub cub);
 
 
