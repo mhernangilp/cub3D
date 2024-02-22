@@ -52,12 +52,8 @@ typedef struct data
 
 typedef struct s_ray
 {
-	double posx;
-	double posy;
-	double dirx;
-	double diry;
-	double planex;
-	double planey;
+	int		angle;
+	float	radians;
 }	t_ray;
 
 typedef struct s_cub
@@ -67,8 +63,10 @@ typedef struct s_cub
 	void	*img;
 	int		height;
 	int		width;
+
+	t_ray	ray;
 	
-	int     angle;
+	int		angle;
 	int		p_x;
 	int		p_y;
 	int     n_x;
@@ -90,9 +88,9 @@ int	ft_strrncmp(char *s1, char *s2, int n);
 /* EXECUTION */
 void	execution();
 
-void	drawMap2D(t_cub cub);
+void	drawMap2D(t_cub cub, t_ray ray);
 void 	box(t_cub cub, int x, int y, int color);
-void 	draw_player(t_cub cub);
+void 	draw_player(t_cub cub, t_ray ray);
 
 
 #endif

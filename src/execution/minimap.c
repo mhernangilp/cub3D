@@ -18,7 +18,7 @@
 
 void bresenham_line(void *mlx, void *win, int x0, int y0, int x1, int y1, int color);
 
-void drawMap2D(t_cub cub)
+void drawMap2D(t_cub cub, t_ray ray)
 {
 	int map[] = {
 		1,1,1,1,1,1,1,1,
@@ -42,11 +42,22 @@ void drawMap2D(t_cub cub)
 				box(cub, x, y, 0x808080);
 		}
 	}
-	draw_player(cub);
-	if (cub.angle < PI)
-		printf("HOLA\n");
-	if (cub.angle > PI)
-		printf("ADIOS\n");
+	draw_player(cub, ray);
+
+    ray.radians = ray.angle *(PI / 180.0);
+    if (ray.radians < 0)
+		ray.radians += 2 * PI;
+	if (ray.radians > 2 * PI)
+		ray.radians -= 2 * PI;
+
+
+    printf("GRADOS->%d    RADIANES->%f\n", ray.angle, ray.radians);
+    if (ray.radians > 6)
+        ray.radians -= 6;
+	if (ray.radians > PI)
+        printf("POSITIVO\n");
+   	else if (ray.radians < PI)
+		printf("NRGA\n");
 }
 
 void box(t_cub cub, int x, int y, int color)
@@ -64,39 +75,34 @@ void box(t_cub cub, int x, int y, int color)
 	}
 }
 
-void draw_player(t_cub cub)
+void draw_player(t_cub cub, t_ray ray)
 {
     int s;
     int u;
-    int square_size = 20;
+    int square_size = 10;
+    float rotated_x;
+    float rotated_y;
 
-    int origin_x = cub.p_x;
-    int origin_y = cub.p_y;
-    float radians = cub.angle * (M_PI / 180.0);
-    int rotated_x = 0;
-    int rotated_y = 0;
-    
-    s = -1;
-    while (++s < square_size)
+    ray.radians = ray.angle *(PI / 180.0);
+	s = -square_size / 2;
+    while (s++ < square_size / 2)
     {
-        u = -1;
-        while (++u < square_size)
+		u = -square_size / 2;
+        while (u++ < square_size / 2 )
         {
-            rotated_x = round((s - square_size / 2) * cos(radians) - (u - square_size / 2) * sin(radians)) + origin_x;
-            rotated_y = round((s - square_size / 2) * sin(radians) + (u - square_size / 2) * cos(radians)) + origin_y;
+            rotated_x = (s * cos(ray.radians) - u * sin(ray.radians)) + cub.p_x;
+            rotated_y = (s * sin(ray.radians) + u * cos(ray.radians)) + cub.p_y;
             mlx_pixel_put(cub.mlx, cub.win, rotated_x, rotated_y, 0x00FF00);
         }
     }
-    int end_x1 = round(10 * cos(radians - M_PI / 2)) + origin_x;
-    int end_y1 = round(10 * sin(radians - M_PI / 2)) + origin_y;
-    int end_x2 = end_x1 + round(50 * cos(radians));
-    int end_y2 = end_y1 + round(50 * sin(radians));
 
-    // Dibujar la línea perpendicular al lado del cuadrado
+    int end_x1 = cub.p_x + square_size / 2 * cos(ray.radians);
+    int end_y1 = cub.p_y + square_size / 2 * sin(ray.radians);
+    int end_x2 = end_x1 + 50 * cos(ray.radians);
+    int end_y2 = end_y1 + 50 * sin(ray.radians);
     bresenham_line(cub.mlx, cub.win, end_x1, end_y1, end_x2, end_y2, 0x00FF00);
 }
 
-// Algoritmo de Bresenham para dibujar una línea
 void bresenham_line(void *mlx, void *win, int x0, int y0, int x1, int y1, int color)
 {
     int dx = abs(x1 - x0);
