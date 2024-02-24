@@ -22,8 +22,8 @@ void	execution(void)
 	if (!cub.win)
 		exit_mssg("Wrong window\n");
 	//cub.img = mlx_new_image(cub.mlx, W_WIDTH, W_HEIGHT);
-	cub.p_x = 100;
-	cub.p_y = 100;
+	cub.px = 100;
+	cub.py = 100;
     ray.angle = 0;
     cub.ray = ray;
 	drawMap2D(cub, ray);

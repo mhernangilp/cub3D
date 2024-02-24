@@ -40,17 +40,21 @@ static int	keyb(int key, t_cub *cub)
 		exit(1);
 	}
 	if(key== 0)
-		cub->p_x -= 3;
+		cub->px -= 3;
  	if(key== 2)
-		cub->p_x += 3;
+		cub->px += 3;
  	if(key== 13)
-		cub->p_y -= 3;
+		cub->py -= 3;
  	if(key== 1)
-		cub->p_y += 3;
+		cub->py += 3;
 	if(key== 123)
 		cub->ray.angle -= 5;
 	if(key== 124)
 		cub->ray.angle += 5;
+	if (cub->ray.angle > 360)
+        cub->ray.angle -= 360;
+    if (cub->ray.angle < -360)
+        cub->ray.angle += 360;
 	if (key == 0 || key == 1 || key == 2 || key == 13 || key == 123 || key == 124)
 	{
 		mlx_clear_window(cub->mlx, cub->win);

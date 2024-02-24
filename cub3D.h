@@ -25,6 +25,10 @@
 # define W_HEIGHT 675
 # define PI 3.1415926535
 
+#define MAP_WIDTH  8 //map width
+#define MAP_HEIGHT  8 //map height
+#define MAP_SCALE 64 //map cube size
+
 typedef struct s_map
 {
 	char	**map;
@@ -54,6 +58,7 @@ typedef struct s_ray
 {
 	int		angle;
 	float	radians;
+	int		look;
 }	t_ray;
 
 typedef struct s_cub
@@ -66,12 +71,11 @@ typedef struct s_cub
 
 	t_ray	ray;
 	
-	int		angle;
-	int		p_x;
-	int		p_y;
+	int		px;
+	int		py;
+	int		pa;
 	int     n_x;
 	int     n_y;
-	int     p_a;
 	int     p_dx;
 	int     p_dy;
 }	t_cub;

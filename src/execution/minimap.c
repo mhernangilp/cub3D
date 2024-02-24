@@ -12,10 +12,6 @@
 
 #include "../../cub3D.h"
 
-#define MAP_WIDTH  8      //map width
-#define MAP_HEIGHT  8      //map height
-#define MAP_SCALE 64      //map cube size
-
 void bresenham_line(void *mlx, void *win, int x0, int y0, int x1, int y1, int color);
 
 void drawMap2D(t_cub cub, t_ray ray)
@@ -34,14 +30,18 @@ void drawMap2D(t_cub cub, t_ray ray)
 	int	x;
 	int y;
 
-	for (y = 0; y < MAP_HEIGHT; y++) {
-		for (x = 0; x < MAP_WIDTH; x++) {
-			if (map[y * MAP_WIDTH + x] == 1)
-				box(cub, x, y, 0xFFFFFF);
-			else
-				box(cub, x, y, 0x808080);
-		}
-	}
+    y = -1;
+    while (++y < MAP_HEIGHT)
+     {
+         x = -1;
+		 while (++x < MAP_WIDTH)
+         {
+		    if (map[y * MAP_WIDTH + x] == 1)
+		 	    box(cub, x, y, 0xFFFFFF);
+		     else
+		        box(cub, x, y, 0x808080);
+	    }
+    }
 	draw_player(cub, ray);
 
     ray.radians = ray.angle *(PI / 180.0);
@@ -50,14 +50,15 @@ void drawMap2D(t_cub cub, t_ray ray)
 	if (ray.radians > 2 * PI)
 		ray.radians -= 2 * PI;
 
-
-    printf("GRADOS->%d    RADIANES->%f\n", ray.angle, ray.radians);
-    if (ray.radians > 6)
-        ray.radians -= 6;
-	if (ray.radians > PI)
-        printf("POSITIVO\n");
-   	else if (ray.radians < PI)
-		printf("NRGA\n");
+    printf("GRADOS-> %d    RADIANES-> %f\n", ray.angle, ray.radians);
+    if ((ray.angle > 180 && ray.angle < 360) || (ray.angle < 0 && ray.angle > -180))
+		ray.look = 1; //Arriba
+	else if ((ray.angle > 0 && ray.angle < 180) || (ray.angle < -180 && ray.angle > -360))
+        ray.look = 2; //Debajo
+    else if (ray.angle == 180 || ray.angle == -180)
+        ray.look = 3; // Izquierda
+    else if(ray.angle == 0 || ray.angle == 360 || ray.angle == -360)
+        ray.look = 4; //Derecha
 }
 
 void box(t_cub cub, int x, int y, int color)
@@ -90,14 +91,14 @@ void draw_player(t_cub cub, t_ray ray)
 		u = -square_size / 2;
         while (u++ < square_size / 2 )
         {
-            rotated_x = (s * cos(ray.radians) - u * sin(ray.radians)) + cub.p_x;
-            rotated_y = (s * sin(ray.radians) + u * cos(ray.radians)) + cub.p_y;
+            rotated_x = (s * cos(ray.radians) - u * sin(ray.radians)) + cub.px;
+            rotated_y = (s * sin(ray.radians) + u * cos(ray.radians)) + cub.py;
             mlx_pixel_put(cub.mlx, cub.win, rotated_x, rotated_y, 0x00FF00);
         }
     }
 
-    int end_x1 = cub.p_x + square_size / 2 * cos(ray.radians);
-    int end_y1 = cub.p_y + square_size / 2 * sin(ray.radians);
+    int end_x1 = cub.px + square_size / 2 * cos(ray.radians);
+    int end_y1 = cub.py + square_size / 2 * sin(ray.radians);
     int end_x2 = end_x1 + 50 * cos(ray.radians);
     int end_y2 = end_y1 + 50 * sin(ray.radians);
     bresenham_line(cub.mlx, cub.win, end_x1, end_y1, end_x2, end_y2, 0x00FF00);
