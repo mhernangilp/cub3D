@@ -12,6 +12,7 @@
 
 #include "../../cub3D.h"
 
+void drawRays2D(t_cub cub);
 void bresenham_line(void *mlx, void *win, int x0, int y0, int x1, int y1, int color);
 
 void drawMap2D(t_cub cub, t_ray ray)
@@ -27,6 +28,7 @@ void drawMap2D(t_cub cub, t_ray ray)
 		1,1,1,1,1,1,1,1
 	};
 
+    cub.map = map;
 	int	x;
 	int y;
 
@@ -59,6 +61,7 @@ void drawMap2D(t_cub cub, t_ray ray)
         ray.look = 3; // Izquierda
     else if(ray.angle == 0 || ray.angle == 360 || ray.angle == -360)
         ray.look = 4; //Derecha
+    drawRays2D(cub);
 }
 
 void box(t_cub cub, int x, int y, int color)
@@ -129,5 +132,115 @@ void bresenham_line(void *mlx, void *win, int x0, int y0, int x1, int y1, int co
             err += dx;
             y0 += sy;
         }
+    }
+}
+
+void drawRays2D(t_cub cub)
+{
+    int mx, my, mp, dof;
+    float vx, vy, rx, ry, ra, xo, yo, disV, disH, r;
+    ra = cub.pa;
+
+    r = 0.0;
+    while (r < 60.0)
+    {
+        ra = cub.pa - cub.ray.angle + r;
+        // Vertical
+        dof = 0;
+        disV = 100000;
+        float Tan = tan(ra * (PI / 180.0));
+        if (cos(ra * (PI / 180.0)) > 0.001)
+        {
+            rx = (((int)cub.px >> 6) << 6) + 64;
+            ry = (cub.px - rx) * Tan + cub.py;
+            xo = 64;
+            yo = -xo * Tan;
+        }
+        else if (cos(ra * (PI / 180.0)) < -0.001)
+        {
+            rx = (((int)cub.px >> 6) << 6) - 0.0001;
+            ry = (cub.px - rx) * Tan + cub.py;
+            xo = -64;
+            yo = -xo * Tan;
+        }
+        else
+        {
+            rx = cub.px;
+            ry = cub.py;
+            dof = 8;
+        }
+
+        while (dof < 8)
+        {
+            mx = (int)(rx) >> 6;
+            my = (int)(ry) >> 6;
+            mp = my * MAP_WIDTH + mx;
+            if (mp > 0 && mp < MAP_WIDTH * MAP_HEIGHT && cub.map[mp] == 1)
+            {
+                dof = 8;
+                disV = cos(ra * (PI / 180.0)) * (rx - cub.px) - sin(ra * (PI / 180.0)) * (ry - cub.py);
+            }
+            else
+            {
+                rx += xo;
+                ry += yo;
+                dof += 1;
+            }
+        }
+        vx = rx;
+        vy = ry;
+        
+
+        // Horizontal
+        dof = 0;
+        disH = 100000;
+        Tan = 1.0 / Tan;
+        if (sin(ra * (PI / 180.0)) > 0.001)
+        {
+            ry = (((int)cub.py >> 6) << 6) - 0.0001;
+            rx = (cub.py - ry) * Tan + cub.px;
+            yo = -64;
+            xo = -yo * Tan;
+        }
+        else if (sin(ra * (PI / 180.0)) < -0.001)
+        {
+            ry = (((int)cub.py >> 6) << 6) + 64;
+            rx = (cub.py - ry) * Tan + cub.px;
+            yo = 64;
+            xo = -yo * Tan;
+        }
+        else
+        {
+            rx = cub.px;
+            ry = cub.py;
+            dof = 8;
+        }
+
+        while (dof < 8)
+        {
+            mx = (int)(rx) >> 6;
+            my = (int)(ry) >> 6;
+            mp = my * MAP_WIDTH + mx;
+            if (mp > 0 && mp < MAP_WIDTH * MAP_HEIGHT && cub.map[mp] == 1)
+            {
+                dof = 8;
+                disH = cos(ra * (PI / 180.0)) * (rx - cub.px) - sin(ra * (PI / 180.0)) * (ry - cub.py);
+            }
+            else
+            {
+                rx += xo;
+                ry += yo;
+                dof += 1;
+            }
+        }
+        if (disV < disH)
+        {
+            rx = vx;
+            ry = vy;
+            disH = disV;
+        }
+
+        bresenham_line(cub.mlx, cub.win, cub.px, cub.py, rx, ry, 0xFF0000);
+        r += 0.1;
     }
 }

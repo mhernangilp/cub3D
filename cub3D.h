@@ -59,6 +59,8 @@ typedef struct s_ray
 	int		angle;
 	float	radians;
 	int		look;
+	int		mx;
+	int		my;
 }	t_ray;
 
 typedef struct s_cub
@@ -69,7 +71,10 @@ typedef struct s_cub
 	int		height;
 	int		width;
 
+	int		*map;
+
 	t_ray	ray;
+	t_data	data;
 	
 	int		px;
 	int		py;
@@ -90,7 +95,7 @@ void	parse(char *file, t_data *data);
 int	ft_strrncmp(char *s1, char *s2, int n);
 
 /* EXECUTION */
-void	execution();
+void	execution(t_data data);
 
 void	drawMap2D(t_cub cub, t_ray ray);
 void 	box(t_cub cub, int x, int y, int color);
