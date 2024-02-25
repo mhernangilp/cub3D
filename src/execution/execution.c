@@ -8,6 +8,6 @@ void	execution(void)
 	cub.win = mlx_new_window(cub.mlx, WIDTH, HEIGHT, "cub3D");
 	if (!cub.win)
 		exit_mssg("Wrong window\n");
-	cub.img = new_image(&cub, WIDTH, HEIGHT);
+	//cub.img = new_image(&cub, WIDTH, HEIGHT);
 	window(&cub);
 }
