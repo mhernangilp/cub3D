@@ -6,7 +6,7 @@
 /*   By: mhernang <mhernang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 14:28:12 by mhernang          #+#    #+#             */
-/*   Updated: 2024/02/11 17:59:01 by mhernang         ###   ########.fr       */
+/*   Updated: 2024/02/25 18:09:51 by mhernang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,41 @@ static void process_color(char *line, t_data *data)
     i = 2;
     while (line[i] && line[i] == ' ')
         i++;
+    if (!ft_isdigit(line[i])) {
+        color.R = color.G = color.B = -1;
+        printf("R:%d G:%d B:%d\n", color.R, color.G, color.B);
+        return;
+    }
     color.R = ft_atoi(&line[i]);
+    if (color.R < 0 || color.R > 255)
+        color.R = -1;
     while (line[i] && line[i] != ',')
         i++;
-    color.G = ft_atoi(&line[++i]);
+    if (line[i])
+        i++;
+    if (!ft_isdigit(line[i])) {
+        color.G = color.B = -1;
+        printf("R:%d G:%d B:%d\n", color.R, color.G, color.B);
+        return;
+    }
+    color.G = ft_atoi(&line[i]);
+    if (color.G < 0 || color.G > 255)
+        color.G = -1;
     while (line[i] && line[i] != ',')
         i++;
-    color.B = ft_atoi(&line[++i]);
-    printf("R:%d G:%d B:%d", color.R, color.G, color.B);
+    
+    if (line[i])
+        i++;
+    if (!ft_isdigit(line[i])) {
+        color.B = -1;
+        printf("R:%d G:%d B:%d\n", color.R, color.G, color.B);
+        return;
+    }
+    color.B = ft_atoi(&line[i]);
+    if (color.B < 0 || color.B > 255)
+        color.B = -1;
+    
+    printf("R:%d G:%d B:%d\n", color.R, color.G, color.B);
     set_colors(line[0], data, color);
 }
 

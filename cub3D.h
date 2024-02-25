@@ -6,7 +6,7 @@
 /*   By: mhernang <mhernang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:01:44 by gfernand          #+#    #+#             */
-/*   Updated: 2024/02/11 17:24:29 by mhernang         ###   ########.fr       */
+/*   Updated: 2024/02/25 18:26:16 by mhernang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,13 @@ void	parse(char *file, t_data *data);
 
 /* PARSE_UTILS */
 int	ft_strrncmp(char *s1, char *s2, int n);
+int is_map(char *line);
 
-/* PROCESS*/
+/* PROCESS */
 void	process_line(char *line, t_data *data);
 
+/* PROCESS MAP */
+void    process_map(int fd, char *line, t_data *data);
 /* EXECUTION */
 void	execution();
 

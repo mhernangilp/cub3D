@@ -16,3 +16,21 @@ int	ft_strrncmp(char *s1, char *s2, int n)
 		return (1);
 	return (0);
 }
+
+int is_map(char *line)
+{
+    int empty;
+
+    empty = 1;
+    while (*line && *line != '\n')
+    {
+        if (*line == '1')
+            empty = 0;
+        if (*line != ' ' && *line != '1')
+            return (0);
+        line++;
+    }
+    if (empty)
+        return (0);
+    return (1);
+}
