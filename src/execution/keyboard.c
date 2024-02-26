@@ -14,6 +14,7 @@
 
 static int	exkey(t_cub	*cub);
 static int	keyb(int key, t_cub *cub);
+static void	wasd(t_cub *cub, int key);
 
 void	window(t_cub *cub)
 {
@@ -39,14 +40,7 @@ static int	keyb(int key, t_cub *cub)
 		cub->win = NULL;
 		exit(1);
 	}
-	if(key== 0)
-		cub->px -= 3;
- 	if(key== 2)
-		cub->px += 3;
- 	if(key== 13)
-		cub->py -= 3;
- 	if(key== 1)
-		cub->py += 3;
+	wasd(cub, key);
 	if(key== 123)
 		cub->ray.angle -= 5;
 	if(key== 124)
@@ -61,4 +55,28 @@ static int	keyb(int key, t_cub *cub)
 		drawMap2D(*cub, cub->ray);
 	}
 	return (0);
+}
+
+static void	wasd(t_cub *cub, int key)
+{
+	if(key== 0)
+	{
+		cub->px -= 3 * -sin(cub->ray.angle * (M_PI / 180.0));
+		cub->py -= 3 * cos(cub->ray.angle * (M_PI / 180.0));
+	}
+ 	if(key== 2)
+	{
+		cub->px += 3 * -sin(cub->ray.angle * (M_PI / 180.0));
+		cub->py += 3 * cos(cub->ray.angle * (M_PI / 180.0));
+	}
+ 	if(key== 13)
+	{
+		cub->px += 3 * cos(cub->ray.angle * (M_PI / 180.0));
+		cub->py += 3 * sin(cub->ray.angle * (M_PI / 180.0));
+	}
+ 	if(key== 1)
+	{
+		cub->px -= 3 * cos(cub->ray.angle * (M_PI / 180.0));
+		cub->py -= 3 * sin(cub->ray.angle * (M_PI / 180.0));
+	}
 }

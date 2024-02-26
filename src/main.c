@@ -17,7 +17,7 @@ void	leaks(void)
 	system("leaks cub3D");
 }
 
-void    ft_map(t_data data);
+void    ft_map(t_data *data);
 
 int	main(int arg, char **argv)
 {
@@ -27,7 +27,7 @@ int	main(int arg, char **argv)
 	if (arg < 2)
 		exit_mssg("Error: 2 arguments are spected\n");
 	parse(argv[1], &data);
-	ft_map(data);
+	ft_map(&data);
 	execution(data);
 	(void)argv[0];
 	return (0);
@@ -44,72 +44,72 @@ void	exit_mssg(char *s)
 }
 
 
-void    ft_map(t_data data)
+void    ft_map(t_data *data)
 {
-	data.map.map = malloc((MAP_HEIGHT + 1) * sizeof(char *));
+	data->mp = malloc((MAP_HEIGHT + 1) * sizeof(char *));
 	for (int i = 0; i < MAP_HEIGHT; i++)
-        data.map.map[i] = malloc((MAP_WIDTH + 1) * sizeof(char));
+        data->mp[i] = malloc((MAP_WIDTH + 1) * sizeof(char));
 
 
-    data.map.map[0][0] = '1';
-    data.map.map[0][1] = '1';
-    data.map.map[0][2] = '1';
-    data.map.map[0][3] = '1';
-    data.map.map[0][4] = '1';
-    data.map.map[0][5] = '1';
-    data.map.map[0][6] = '1';
-    data.map.map[0][7] = '1';
-    data.map.map[0][8] = '\0';
+    data->mp[0][0] = '1';
+    data->mp[0][1] = '1';
+    data->mp[0][2] = '1';
+    data->mp[0][3] = '1';
+    data->mp[0][4] = '1';
+    data->mp[0][5] = '1';
+    data->mp[0][6] = '1';
+    data->mp[0][7] = '1';
+    data->mp[0][8] = '\0';
 
-    data.map.map[1][0] = '1';
-    data.map.map[1][1] = '0';
-    data.map.map[1][2] = '1';
-    data.map.map[1][3] = '0';
-    data.map.map[1][4] = '0';
-    data.map.map[1][5] = '0';
-    data.map.map[1][6] = '0';
-    data.map.map[1][7] = '1';
-    data.map.map[1][8] = '\0';
+    data->mp[1][0] = '1';
+    data->mp[1][1] = '0';
+    data->mp[1][2] = '1';
+    data->mp[1][3] = '0';
+    data->mp[1][4] = '0';
+    data->mp[1][5] = '0';
+    data->mp[1][6] = '0';
+    data->mp[1][7] = '1';
+    data->mp[1][8] = '\0';
 
-    data.map.map[2][0] = '1';
-    data.map.map[2][1] = '0';
-    data.map.map[2][2] = '1';
-    data.map.map[2][3] = '0';
-    data.map.map[2][4] = '0';
-    data.map.map[2][5] = '0';
-    data.map.map[2][6] = '0';
-    data.map.map[2][7] = '1';
-    data.map.map[2][8] = '\0';
+    data->mp[2][0] = '1';
+    data->mp[2][1] = '0';
+    data->mp[2][2] = '1';
+    data->mp[2][3] = '0';
+    data->mp[2][4] = '0';
+    data->mp[2][5] = '0';
+    data->mp[2][6] = '0';
+    data->mp[2][7] = '1';
+    data->mp[2][8] = '\0';
 
-    data.map.map[3][0] = '1';
-    data.map.map[3][1] = '0';
-    data.map.map[3][2] = '1';
-    data.map.map[3][3] = '0';
-    data.map.map[3][4] = '0';
-    data.map.map[3][5] = '0';
-    data.map.map[3][6] = '0';
-    data.map.map[3][7] = '1';
-    data.map.map[3][8] = '\0';
+    data->mp[3][0] = '1';
+    data->mp[3][1] = '0';
+    data->mp[3][2] = '1';
+    data->mp[3][3] = '0';
+    data->mp[3][4] = '0';
+    data->mp[3][5] = '0';
+    data->mp[3][6] = '0';
+    data->mp[3][7] = '1';
+    data->mp[3][8] = '\0';
 
-    data.map.map[4][0] = '1';
-    data.map.map[4][1] = '0';
-    data.map.map[4][2] = '0';
-    data.map.map[4][3] = '0';
-    data.map.map[4][4] = '0';
-    data.map.map[4][5] = '0';
-    data.map.map[4][6] = '0';
-    data.map.map[4][7] = '1';
-    data.map.map[4][8] = '\0';
+    data->mp[4][0] = '1';
+    data->mp[4][1] = '0';
+    data->mp[4][2] = '0';
+    data->mp[4][3] = '0';
+    data->mp[4][4] = '0';
+    data->mp[4][5] = '0';
+    data->mp[4][6] = '0';
+    data->mp[4][7] = '1';
+    data->mp[4][8] = '\0';
 
-	data.map.map[5][0] = '1';
-    data.map.map[5][1] = '1';
-    data.map.map[5][2] = '1';
-    data.map.map[5][3] = '1';
-    data.map.map[5][4] = '1';
-    data.map.map[5][5] = '1';
-    data.map.map[5][6] = '1';
-    data.map.map[5][7] = '1';
-    data.map.map[5][8] = '\0';
+	data->mp[5][0] = '1';
+    data->mp[5][1] = '1';
+    data->mp[5][2] = '1';
+    data->mp[5][3] = '1';
+    data->mp[5][4] = '1';
+    data->mp[5][5] = '1';
+    data->mp[5][6] = '1';
+    data->mp[5][7] = '1';
+    data->mp[5][8] = '\0';
 
-    data.map.map[6] = NULL;
+    data->mp[6] = NULL;
 }

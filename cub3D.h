@@ -25,8 +25,9 @@
 # define W_HEIGHT 675
 # define PI 3.1415926535
 
+#define SQR_SIZE 10
 #define MAP_WIDTH  8 //map width
-#define MAP_HEIGHT  8 //map height
+#define MAP_HEIGHT  6 //map height
 #define MAP_SCALE 64 //map cube size
 
 typedef struct s_map
@@ -49,6 +50,7 @@ typedef struct data
 	char	*SO;
 	char	*WE;
 	char	*EA;
+	char	**mp;
 	t_RGB	F;
 	t_RGB	C;
 	t_map	map;
@@ -62,6 +64,15 @@ typedef struct s_ray
 	int		mx;
 	int		my;
 }	t_ray;
+
+typedef struct s_brsh
+{
+	int	x0;
+	int	x1;
+	int	y0;
+	int	y1;
+}	t_brsh;
+
 
 typedef struct s_cub
 {
