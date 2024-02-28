@@ -18,16 +18,6 @@ void    bresenham_line(t_cub cub, t_brsh brsh, int color);
 
 void drawMap2D(t_cub cub, t_ray ray)
 {
-	int map[] = {
-		1,1,1,1,1,1,1,1,
-		1,0,1,0,0,0,0,1,
-		1,0,1,0,0,0,0,1,
-		1,0,1,0,0,0,0,1,
-		1,0,0,0,0,0,0,1,
-		1,1,1,1,1,1,1,1
-	};
-
-    cub.map = map;
 	int	x;
 	int y;
     char    **m;
@@ -106,38 +96,39 @@ void draw_player(t_cub cub, t_ray ray)
 
 void bresenham_line(t_cub cub, t_brsh brsh, int color)
 {
-    int dx = abs(brsh.x1 - brsh.x0);
-    int dy = abs(brsh.y1 - brsh.y0);
-    int sx = brsh.x0 < brsh.x1 ? 1 : -1;
-    int sy = brsh.y0 < brsh.y1 ? 1 : -1;
-    int err = (dx > dy ? dx : -dy) / 2;
+    int err;
     int e2;
 
+    brsh.dx = abs(brsh.x1 - brsh.x0);
+    brsh.dy = abs(brsh.y1 - brsh.y0);
+    brsh.sx = brsh.x0 < brsh.x1 ? 1 : -1;
+    brsh.sy = brsh.y0 < brsh.y1 ? 1 : -1;
+    err = (brsh.dx > brsh.dy ? brsh.dx : -brsh.dy) / 2;
     while (1)
     {
         mlx_pixel_put(cub.mlx, cub.win, brsh.x0, brsh.y0, color);
         if (brsh.x0 == brsh.x1 && brsh.y0 == brsh.y1)
             break;
         e2 = err;
-        if (e2 > -dx)
+        if (e2 > -brsh.dx)
         {
-            err -= dy;
-            brsh.x0 += sx;
+            err -= brsh.dy;
+            brsh.x0 += brsh.sx;
         }
-        if (e2 < dy)
+        if (e2 < brsh.dy)
         {
-            err += dx;
-            brsh.y0 += sy;
+            err += brsh.dx;
+            brsh.y0 += brsh.sy;
         }
     }
 }
 
 void drawRays2D(t_cub cub)
 {
-    int mx, my, mp, dof;
+    int mx, my, dof;
     float vx, vy, rx, ry, ra, xo, yo, disV, disH, r;
     ra = cub.pa;
-    t_brsh  brsh;
+    t_brsh brsh;
 
     r = 0.0;
     while (r < 60.0)
@@ -172,8 +163,7 @@ void drawRays2D(t_cub cub)
         {
             mx = (int)(rx) >> 6;
             my = (int)(ry) >> 6;
-            mp = my * MAP_WIDTH + mx;
-            if (mp > 0 && mp < MAP_WIDTH * MAP_HEIGHT && cub.map[mp] == 1)
+            if (my >= 0 && my < MAP_HEIGHT && mx >= 0 && mx < MAP_WIDTH && cub.data.mp[my][mx] == '1')
             {
                 dof = 8;
                 disV = cos(ra * (PI / 180.0)) * (rx - cub.px) - sin(ra * (PI / 180.0)) * (ry - cub.py);
@@ -187,7 +177,6 @@ void drawRays2D(t_cub cub)
         }
         vx = rx;
         vy = ry;
-        
 
         // Horizontal
         dof = 0;
@@ -218,8 +207,7 @@ void drawRays2D(t_cub cub)
         {
             mx = (int)(rx) >> 6;
             my = (int)(ry) >> 6;
-            mp = my * MAP_WIDTH + mx;
-            if (mp > 0 && mp < MAP_WIDTH * MAP_HEIGHT && cub.map[mp] == 1)
+            if (my >= 0 && my < MAP_HEIGHT && mx >= 0 && mx < MAP_WIDTH && cub.data.mp[my][mx] == '1')
             {
                 dof = 8;
                 disH = cos(ra * (PI / 180.0)) * (rx - cub.px) - sin(ra * (PI / 180.0)) * (ry - cub.py);
@@ -231,6 +219,7 @@ void drawRays2D(t_cub cub)
                 dof += 1;
             }
         }
+
         if (disV < disH)
         {
             rx = vx;

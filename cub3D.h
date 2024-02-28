@@ -71,6 +71,10 @@ typedef struct s_brsh
 	int	x1;
 	int	y0;
 	int	y1;
+	int	dx;
+	int	dy;
+	int	sx;
+	int	sy;
 }	t_brsh;
 
 
@@ -81,8 +85,6 @@ typedef struct s_cub
 	void	*img;
 	int		height;
 	int		width;
-
-	int		*map;
 
 	t_ray	ray;
 	t_data	data;
