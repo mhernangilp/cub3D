@@ -71,6 +71,7 @@ typedef struct s_ray
 	float	yo;
 	float	d_v;
 	float	d_h;
+	float	tan;
 }	t_ray;
 
 typedef struct s_brsh
