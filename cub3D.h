@@ -61,8 +61,16 @@ typedef struct s_ray
 	int		angle;
 	float	radians;
 	int		look;
-	int		mx;
-	int		my;
+	int		dof;
+	float	vx;
+	float	vy;
+	float	rx;
+	float	ry;
+	float	ra;
+	float	xo;
+	float	yo;
+	float	d_v;
+	float	d_h;
 }	t_ray;
 
 typedef struct s_brsh
@@ -85,17 +93,11 @@ typedef struct s_cub
 	void	*img;
 	int		height;
 	int		width;
-
 	t_ray	ray;
 	t_data	data;
-	
 	int		px;
 	int		py;
 	int		pa;
-	int     n_x;
-	int     n_y;
-	int     p_dx;
-	int     p_dy;
 }	t_cub;
 
 void	window(t_cub *cub);
@@ -110,7 +112,8 @@ int	ft_strrncmp(char *s1, char *s2, int n);
 /* EXECUTION */
 void	execution(t_data data);
 
-void	drawMap2D(t_cub cub, t_ray ray);
+void	draw_map2d(t_cub cub, t_ray ray);
+void	draw_rays2d(t_cub cub, t_ray ray);
 void 	box(t_cub cub, int x, int y, int color);
 void 	draw_player(t_cub cub, t_ray ray);
 
