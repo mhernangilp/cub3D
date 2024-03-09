@@ -13,6 +13,7 @@
 #include "../../cub3D.h"
 
 void	rd_angle(t_ray ray);
+void	black(t_cub cub);
 
 void	draw_map2d(t_cub cub, t_ray ray)
 {
@@ -21,6 +22,7 @@ void	draw_map2d(t_cub cub, t_ray ray)
 	char	**m;
 
 	m = cub.data.mp;
+	black(cub);
 	y = -1;
 	while (m[++y])
 	{
@@ -99,5 +101,19 @@ void	draw_player(t_cub cub, t_ray ray)
 			rotated_y = (s * sin(ray.radians) + u * cos(ray.radians)) + cub.py;
 			set_pixel(&cub, rotated_x, rotated_y, 0x00FF00);
 		}
+	}
+}
+
+void	black(t_cub cub)
+{
+	int	x;
+	int	y;
+
+	x = -1;
+	while (++x < W_WIDTH)
+	{
+		y = -1;
+		while (++y < W_HEIGHT)
+			set_pixel(&cub, x, y, 0);
 	}
 }

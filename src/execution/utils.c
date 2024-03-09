@@ -1,7 +1,7 @@
-
 #include "../../cub3D.h"
 
 void	put_pixel(t_cub *data, int x, int y, int color);
+int		brsh_variables(t_brsh *brsh);
 
 void	set_pixel(t_cub *cub, int x, int y, int color)
 {
@@ -36,16 +36,12 @@ void	bresenham_line(t_cub cub, t_brsh brsh, int color)
 	int	err;
 	int	e2;
 
-	brsh.dx = abs(brsh.x1 - brsh.x0);
-	brsh.dy = abs(brsh.y1 - brsh.y0);
-	brsh.sx = brsh.x0 < brsh.x1 ? 1 : -1;
-	brsh.sy = brsh.y0 < brsh.y1 ? 1 : -1;
-	err = (brsh.dx > brsh.dy ? brsh.dx : -brsh.dy) / 2;
+	err = brsh_variables(&brsh);
 	while (1)
 	{
 		set_pixel(&cub, brsh.x0, brsh.y0, color);
 		if (brsh.x0 == brsh.x1 && brsh.y0 == brsh.y1)
-			break;
+			break ;
 		e2 = err;
 		if (e2 > -brsh.dx)
 		{
@@ -58,4 +54,25 @@ void	bresenham_line(t_cub cub, t_brsh brsh, int color)
 			brsh.y0 += brsh.sy;
 		}
 	}
+}
+
+int	brsh_variables(t_brsh *brsh)
+{
+	int	err;
+
+	brsh->dx = abs(brsh->x1 - brsh->x0);
+	brsh->dy = abs(brsh->y1 - brsh->y0);
+	if (brsh->x0 < brsh->x1)
+		brsh->sx = 1;
+	else
+		brsh->sx = -1;
+	if (brsh->y0 < brsh->y1)
+		brsh->sy = 1;
+	else
+		brsh->sy = -1;
+	if (brsh->dx > brsh->dy)
+		err = brsh->dx / 2;
+	else
+		err = -brsh->dy / 2;
+	return (err);
 }

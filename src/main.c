@@ -12,10 +12,10 @@
 
 #include "../cub3D.h"
 
-void	leaks(void)
+/*void	leaks(void)
 {
 	system("leaks cub3D");
-}
+}*/
 
 void    ft_map(t_data *data);
 
@@ -23,7 +23,7 @@ int	main(int arg, char **argv)
 {
 	t_data	data;
 
-	atexit(leaks);
+	//atexit(leaks);
 	if (arg < 2)
 		exit_mssg("Error: 2 arguments are spected\n");
 	parse(argv[1], &data);
