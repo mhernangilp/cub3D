@@ -2,11 +2,11 @@ NAME = cub3D
 
 SRC =	src/main.c src/parse/parse.c src/parse/parse_utils.c\
 	src/execution/execution.c src/execution/keyboard.c\
-	src/execution/minimap.c src/execution/draw_rays.c\
+	src/execution/minimap.c src/execution/draw_rays.c src/execution/utils.c\
 
 CC = gcc
 RM = rm -f
-FLAGS = -Wall -Werror -Wextra #-g3 -fsanitize=address
+FLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address
 
 LIBFT_PATH = libft/
 LIBFT = libft/libft.a

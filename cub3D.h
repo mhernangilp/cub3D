@@ -21,6 +21,8 @@
 # include "libft.h"
 # include "minilibx/mlx.h"
 
+# define MAX 2147483647
+# define MIN -2147483648
 # define W_WIDTH 1200
 # define W_HEIGHT 675
 # define PI 3.1415926535
@@ -74,6 +76,15 @@ typedef struct s_ray
 	float	tan;
 }	t_ray;
 
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bits;
+	int		line;
+	int		end;
+}	t_img;
+
 typedef struct s_brsh
 {
 	int	x0;
@@ -91,7 +102,7 @@ typedef struct s_cub
 {
 	void	*mlx;
 	void	*win;
-	void	*img;
+	t_img	*img;
 	int		height;
 	int		width;
 	t_ray	ray;
@@ -112,6 +123,8 @@ int	ft_strrncmp(char *s1, char *s2, int n);
 
 /* EXECUTION */
 void	execution(t_data data);
+void	set_pixel(t_cub *cub, int x, int y, int color);
+void	bresenham_line(t_cub cub, t_brsh brsh, int color);
 
 void	draw_map2d(t_cub cub, t_ray ray);
 void	draw_rays2d(t_cub cub, t_ray ray);

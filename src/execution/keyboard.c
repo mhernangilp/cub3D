@@ -53,6 +53,8 @@ static int	keyb(int key, t_cub *cub)
 	{
 		mlx_clear_window(cub->mlx, cub->win);
 		draw_map2d(*cub, cub->ray);
+		//mlx_clear_window(cub->mlx, cub->win);
+		mlx_put_image_to_window(cub->mlx, cub->win, cub->img->img, 0, 0);
 	}
 	return (0);
 }

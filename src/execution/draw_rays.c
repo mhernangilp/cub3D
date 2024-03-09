@@ -2,7 +2,6 @@
 
 void	vertical(t_cub cub, t_ray *ray);
 void	horizontal(t_cub cub, t_ray *ray);
-void	bresenham_line(t_cub cub, t_brsh brsh, int color);
 
 void	draw_rays2d(t_cub cub, t_ray ray)
 {
@@ -120,35 +119,6 @@ void	horizontal(t_cub cub, t_ray *ray)
 			ray->rx += ray->xo;
 			ray->ry += ray->yo;
 			ray->dof += 1;
-		}
-	}
-}
-
-void	bresenham_line(t_cub cub, t_brsh brsh, int color)
-{
-	int	err;
-	int	e2;
-
-	brsh.dx = abs(brsh.x1 - brsh.x0);
-	brsh.dy = abs(brsh.y1 - brsh.y0);
-	brsh.sx = brsh.x0 < brsh.x1 ? 1 : -1;
-	brsh.sy = brsh.y0 < brsh.y1 ? 1 : -1;
-	err = (brsh.dx > brsh.dy ? brsh.dx : -brsh.dy) / 2;
-	while (1)
-	{
-		mlx_pixel_put(cub.mlx, cub.win, brsh.x0, brsh.y0, color);
-		if (brsh.x0 == brsh.x1 && brsh.y0 == brsh.y1)
-			break;
-		e2 = err;
-		if (e2 > -brsh.dx)
-		{
-			err -= brsh.dy;
-			brsh.x0 += brsh.sx;
-		}
-		if (e2 < brsh.dy)
-		{
-			err += brsh.dx;
-			brsh.y0 += brsh.sy;
 		}
 	}
 }

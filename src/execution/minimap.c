@@ -13,7 +13,6 @@
 #include "../../cub3D.h"
 
 void	rd_angle(t_ray ray);
-void	bresenham_line(t_cub cub, t_brsh brsh, int color);
 
 void	draw_map2d(t_cub cub, t_ray ray)
 {
@@ -49,7 +48,6 @@ void	rd_angle(t_ray ray)
 		ray.radians += 2 * PI;
 	if (ray.radians > 2 * PI)
 		ray.radians -= 2 * PI;
-	printf("GRADOS-> %d    RADIANES-> %f\n", ag, ray.radians);
 	if ((ag > 180 && ag < 360) || (ag < 0 && ag > -180))
 		ray.look = 1; /* Arriba */
 	else if ((ag > 0 && ag < 180) || (ag < -180 && ag > -360))
@@ -72,13 +70,13 @@ void	box(t_cub cub, int x, int y, int color)
 	{
 		xa = x * MAP_SCALE + s;
 		ya = y * MAP_SCALE;
-		mlx_pixel_put(cub.mlx, cub.win, xa, ya, color);
+		set_pixel(&cub, xa, ya, color);
 		u = 0;
 		while (++u < 60)
 		{
 			xa = x * MAP_SCALE + s;
 			ya = y * MAP_SCALE + u;
-			mlx_pixel_put(cub.mlx, cub.win, xa, ya, color);
+			set_pixel(&cub, xa, ya, color);
 		}
 	}
 }
@@ -99,7 +97,7 @@ void	draw_player(t_cub cub, t_ray ray)
 		{
 			rotated_x = (s * cos(ray.radians) - u * sin(ray.radians)) + cub.px;
 			rotated_y = (s * sin(ray.radians) + u * cos(ray.radians)) + cub.py;
-			mlx_pixel_put(cub.mlx, cub.win, rotated_x, rotated_y, 0x00FF00);
+			set_pixel(&cub, rotated_x, rotated_y, 0x00FF00);
 		}
 	}
 }
