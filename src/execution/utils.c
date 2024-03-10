@@ -1,32 +1,32 @@
 #include "../../cub3D.h"
 
-void	put_pixel(t_cub *data, int x, int y, int color);
+void	put_pixel(t_img *img, int x, int y, int color);
 int		brsh_variables(t_brsh *brsh);
 
-void	set_pixel(t_cub *cub, int x, int y, int color)
+void	set_pixel(t_img *img, int x, int y, int color)
 {
-	cub->img->addr = mlx_get_data_addr(cub->img->img, &cub->img->bits,
-			&cub->img->line, &cub->img->end);
+	img->addr = mlx_get_data_addr(img->img, &img->bits,
+			&img->line, &img->end);
 	if (x > 0 && x < W_WIDTH && y > 0 && y < W_HEIGHT - 90)
 	{
 		if (x < MAX && x > MIN && y < MAX && y > MIN)
-			put_pixel(cub, x, y, color);
+			put_pixel(img, x, y, color);
 	}
 }
 
-void	put_pixel(t_cub *data, int x, int y, int color)
+void	put_pixel(t_img *img, int x, int y, int color)
 {
 	char	*pixel;
 	int		i;
 
-	i = data->img->bits - 8;
-	pixel = data->img->addr + (y * data->img->line + x * (data->img->bits / 8));
+	i = img->bits - 8;
+	pixel = img->addr + (y * img->line + x * (img->bits / 8));
 	while (i >= 0)
 	{
-		if (data->img->end != 0)
+		if (img->end != 0)
 			*pixel++ = (color >> i) & 0xFF;
 		else
-			*pixel++ = (color >> (data->img->bits - 8 - i)) & 0xFF;
+			*pixel++ = (color >> (img->bits - 8 - i)) & 0xFF;
 		i -= 8;
 	}
 }
@@ -39,7 +39,7 @@ void	bresenham_line(t_cub cub, t_brsh brsh, int color)
 	err = brsh_variables(&brsh);
 	while (1)
 	{
-		set_pixel(&cub, brsh.x0, brsh.y0, color);
+		set_pixel(cub.img, brsh.x0, brsh.y0, color);
 		if (brsh.x0 == brsh.x1 && brsh.y0 == brsh.y1)
 			break ;
 		e2 = err;

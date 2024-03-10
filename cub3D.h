@@ -123,7 +123,7 @@ int	ft_strrncmp(char *s1, char *s2, int n);
 
 /* EXECUTION */
 void	execution(t_data data);
-void	set_pixel(t_cub *cub, int x, int y, int color);
+void	set_pixel(t_img *img, int x, int y, int color);
 void	bresenham_line(t_cub cub, t_brsh brsh, int color);
 
 void	draw_map2d(t_cub cub, t_ray ray);

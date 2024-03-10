@@ -72,13 +72,13 @@ void	box(t_cub cub, int x, int y, int color)
 	{
 		xa = x * MAP_SCALE + s;
 		ya = y * MAP_SCALE;
-		set_pixel(&cub, xa, ya, color);
+		set_pixel(cub.img, xa, ya, color);
 		u = 0;
 		while (++u < 60)
 		{
 			xa = x * MAP_SCALE + s;
 			ya = y * MAP_SCALE + u;
-			set_pixel(&cub, xa, ya, color);
+			set_pixel(cub.img, xa, ya, color);
 		}
 	}
 }
@@ -99,7 +99,7 @@ void	draw_player(t_cub cub, t_ray ray)
 		{
 			rotated_x = (s * cos(ray.radians) - u * sin(ray.radians)) + cub.px;
 			rotated_y = (s * sin(ray.radians) + u * cos(ray.radians)) + cub.py;
-			set_pixel(&cub, rotated_x, rotated_y, 0x00FF00);
+			set_pixel(cub.img, rotated_x, rotated_y, 0x00FF00);
 		}
 	}
 }
@@ -114,6 +114,6 @@ void	black(t_cub cub)
 	{
 		y = -1;
 		while (++y < W_HEIGHT)
-			set_pixel(&cub, x, y, 0);
+			set_pixel(cub.img, x, y, 0);
 	}
 }
