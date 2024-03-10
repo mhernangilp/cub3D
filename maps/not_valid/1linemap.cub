@@ -1,0 +1,9 @@
+NO ./textures/textureNO
+SO ./textures/textureSO
+WE ./textures/textureWE
+EA ./textures/textureEA
+
+F 220,100,0
+C 225,30,0
+
+111111111111111111111111111

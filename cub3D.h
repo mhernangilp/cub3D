@@ -6,7 +6,7 @@
 /*   By: mhernang <mhernang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:01:44 by gfernand          #+#    #+#             */
-/*   Updated: 2024/02/25 18:26:16 by mhernang         ###   ########.fr       */
+/*   Updated: 2024/03/10 20:21:15 by mhernang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ typedef struct s_map
 {
 	char	**map;
 	int		rows;
-	int		cols;
 }	t_map;
 
 typedef struct RGB
@@ -71,7 +70,12 @@ int is_map(char *line);
 void	process_line(char *line, t_data *data);
 
 /* PROCESS MAP */
+void    check_map(t_map *map);
 void    process_map(int fd, char *line, t_data *data);
+
+/* CHECK_BORDERS*/
+void    check_borders(t_map *map);
+
 /* EXECUTION */
 void	execution();
 

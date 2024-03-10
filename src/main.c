@@ -6,13 +6,13 @@
 /*   By: mhernang <mhernang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:13:32 by gfernand          #+#    #+#             */
-/*   Updated: 2024/02/25 18:41:53 by mhernang         ###   ########.fr       */
+/*   Updated: 2024/03/10 18:45:23 by mhernang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-static void	data_test(t_data *data);
+//static void	data_test(t_data *data);
 
 void	leaks(void)
 {
@@ -48,7 +48,7 @@ void	error_msg(char *err)
 	perror(err);
 	exit (1);
 }
-
+/*
 static void	data_test(t_data *data)
 {
 	data->NO = ft_strdup("./textures/textureNO");
@@ -69,4 +69,4 @@ static void	data_test(t_data *data)
 	data->map.map[4] = ft_strdup("111111");
 	data->map.rows = 5;
 	data->map.cols = 6;
-}
+}*/
