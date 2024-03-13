@@ -1,41 +1,5 @@
 #include "../../cub3D.h"
 
-void	vertical(t_cub cub, t_ray *ray);
-void	horizontal(t_cub cub, t_ray *ray);
-
-void	draw_rays2d(t_cub cub, t_ray ray)
-{
-	float	r;
-	t_brsh		brsh;
-	float	w;
-
-	r = 60.0;
-	w = 0.0;
-	while (r > 0.0)
-	{
-		ray.ra = cub.pa - cub.ray.angle + r;
-		vertical(cub, &ray);
-		horizontal(cub, &ray);
-		if (ray.d_v < ray.d_h)
-		{
-			ray.rx = ray.vx;
-			ray.ry = ray.vy;
-			ray.d_h = ray.d_v;
-		}
-		brsh.x0 = cub.px / 3;
-		brsh.y0 = cub.py / 3;
-		brsh.x1 = ray.rx / 3;
-		brsh.y1 = ray.ry / 3;
-		bresenham_line(cub, brsh, 0xFF0000);
-		brsh.x0 = w * 8;
-  		brsh.y0 = (W_HEIGHT / 2) - ((MAP_SCALE * 320) / ray.d_h / 2);
-    	brsh.x1 = brsh.x0;
-    	brsh.y1 = brsh.y0 + (MAP_SCALE * 320) / ray.d_h;
-		r -= 0.1;
-		w += 0.1;
-	}
-}
-
 void	vertical(t_cub cub, t_ray *ray)
 {
 	int	mx;
@@ -68,7 +32,7 @@ void	vertical(t_cub cub, t_ray *ray)
 	{
 		mx = (int)(ray->rx) >> 6;
 		my = (int)(ray->ry) >> 6;
-		if (my >= 0 && my < MAP_HEIGHT && mx >= 0 && mx < MAP_WIDTH && cub.data.mp[my][mx] == '1')
+		if (my >= 0 && my < cub.map_h && mx >= 0 && mx < cub.map_w && cub.data.mp[my][mx] == '1')
 		{
 			ray->dof = 8;
 			ray->d_v = cos(ray->ra * (PI / 180.0)) * (ray->rx - cub.px) - sin(ray->ra * (PI / 180.0)) * (ray->ry - cub.py);
@@ -116,7 +80,7 @@ void	horizontal(t_cub cub, t_ray *ray)
 	{
 		mx = (int)(ray->rx) >> 6;
 		my = (int)(ray->ry) >> 6;
-		if (my >= 0 && my < MAP_HEIGHT && mx >= 0 && mx < MAP_WIDTH && cub.data.mp[my][mx] == '1')
+		if (my >= 0 && my < cub.map_h && mx >= 0 && mx < cub.map_w && cub.data.mp[my][mx] == '1')
 		{
 			ray->dof = 8;
 			ray->d_h = cos(ray->ra * (PI / 180.0)) * (ray->rx - cub.px) - sin(ray->ra * (PI / 180.0)) * (ray->ry - cub.py);

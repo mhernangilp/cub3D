@@ -28,8 +28,6 @@
 # define PI 3.1415926535
 
 #define SQR_SIZE 10
-#define MAP_WIDTH  8 //map width
-#define MAP_HEIGHT  6 //map height
 #define MAP_SCALE 64 //map cube size
 
 typedef struct s_map
@@ -110,6 +108,8 @@ typedef struct s_cub
 	int		px;
 	int		py;
 	int		pa;
+	int		map_h;
+	int		map_w;
 }	t_cub;
 
 void	window(t_cub *cub);
@@ -126,10 +126,14 @@ void	execution(t_data data);
 void	set_pixel(t_img *img, int x, int y, int color);
 void	bresenham_line(t_cub cub, t_brsh brsh, int color);
 
-void	draw_map2d(t_cub cub, t_ray ray);
-void	draw_rays2d(t_cub cub, t_ray ray);
+void	map2d(t_cub cub, t_ray ray);
+void	throw_rays(t_cub cub, t_ray ray);
 void 	box(t_cub cub, int x, int y, int color);
-void 	draw_player(t_cub cub, t_ray ray);
+void 	player(t_cub cub, t_ray ray);
+
+void	walls(t_cub cub, t_ray ray);
+void	vertical(t_cub cub, t_ray *ray);
+void	horizontal(t_cub cub, t_ray *ray);
 
 
 #endif

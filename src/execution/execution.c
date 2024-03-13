@@ -27,8 +27,10 @@ void	execution(t_data data)
 	cub.py = 250;
 	ray.angle = 0;
 	cub.pa = -30;
+	cub.map_h = 6;
+	cub.map_w = 8;
 	cub.ray = ray;
-	draw_map2d(cub, ray);
+	map2d(cub, ray);
 	mlx_put_image_to_window(cub.mlx, cub.win, cub.img->img, 0, 0);
 	window(&cub);
 }

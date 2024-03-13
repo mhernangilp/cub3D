@@ -46,9 +46,9 @@ void	exit_mssg(char *s)
 
 void    ft_map(t_data *data)
 {
-	data->mp = malloc((MAP_HEIGHT + 1) * sizeof(char *));
-	for (int i = 0; i < MAP_HEIGHT; i++)
-        data->mp[i] = malloc((MAP_WIDTH + 1) * sizeof(char));
+	data->mp = malloc((6 + 1) * sizeof(char *));
+	for (int i = 0; i < 6; i++)
+        data->mp[i] = malloc((8 + 1) * sizeof(char));
 
 
     data->mp[0][0] = '1';

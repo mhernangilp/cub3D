@@ -42,9 +42,9 @@ static int	keyb(int key, t_cub *cub)
 	}
 	wasd(cub, key);
 	if (key == 123)
-		cub->ray.angle -= 5;
+		cub->ray.angle -= 8;
 	if (key == 124)
-		cub->ray.angle += 5;
+		cub->ray.angle += 8;
 	if (cub->ray.angle > 360)
 		cub->ray.angle -= 360;
 	if (cub->ray.angle < -360)
@@ -52,7 +52,7 @@ static int	keyb(int key, t_cub *cub)
 	if (key == 0 || key == 1 || key == 2 || key == 13 || key == 123 || key == 124)
 	{
 		mlx_clear_window(cub->mlx, cub->win);
-		draw_map2d(*cub, cub->ray);
+		map2d(*cub, cub->ray);
 		mlx_put_image_to_window(cub->mlx, cub->win, cub->img->img, 0, 0);
 	}
 	return (0);
@@ -62,22 +62,22 @@ static void	wasd(t_cub *cub, int key)
 {
 	if (key == 0)
 	{
-		cub->px -= 3 * -sin(cub->ray.angle * (M_PI / 180.0));
-		cub->py -= 3 * cos(cub->ray.angle * (M_PI / 180.0));
+		cub->px -= 5 * -sin(cub->ray.angle * (M_PI / 180.0));
+		cub->py -= 5 * cos(cub->ray.angle * (M_PI / 180.0));
 	}
 	if (key == 2)
 	{
-		cub->px += 3 * -sin(cub->ray.angle * (M_PI / 180.0));
-		cub->py += 3 * cos(cub->ray.angle * (M_PI / 180.0));
+		cub->px += 5 * -sin(cub->ray.angle * (M_PI / 180.0));
+		cub->py += 5 * cos(cub->ray.angle * (M_PI / 180.0));
 	}
 	if (key == 13)
 	{
-		cub->px += 3 * cos(cub->ray.angle * (M_PI / 180.0));
-		cub->py += 3 * sin(cub->ray.angle * (M_PI / 180.0));
+		cub->px += 5 * cos(cub->ray.angle * (M_PI / 180.0));
+		cub->py += 5 * sin(cub->ray.angle * (M_PI / 180.0));
 	}
 	if (key == 1)
 	{
-		cub->px -= 3 * cos(cub->ray.angle * (M_PI / 180.0));
-		cub->py -= 3 * sin(cub->ray.angle * (M_PI / 180.0));
+		cub->px -= 5 * cos(cub->ray.angle * (M_PI / 180.0));
+		cub->py -= 5 * sin(cub->ray.angle * (M_PI / 180.0));
 	}
 }

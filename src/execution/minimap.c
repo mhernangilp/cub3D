@@ -15,7 +15,7 @@
 void	rd_angle(t_ray ray);
 void	black(t_cub cub);
 
-void	draw_map2d(t_cub cub, t_ray ray)
+void	map2d(t_cub cub, t_ray ray)
 {
 	int		x;
 	int		y;
@@ -23,6 +23,7 @@ void	draw_map2d(t_cub cub, t_ray ray)
 
 	m = cub.data.mp;
 	black(cub);
+	walls(cub, ray);
 	y = -1;
 	while (m[++y])
 	{
@@ -35,9 +36,9 @@ void	draw_map2d(t_cub cub, t_ray ray)
 				box(cub, x, y, 0x808080);
 		}
 	}
-	draw_player(cub, ray);
+	player(cub, ray);
+	throw_rays(cub, ray);
 	rd_angle(ray);
-	draw_rays2d(cub, ray);
 }
 
 void	rd_angle(t_ray ray)
@@ -68,10 +69,10 @@ void	box(t_cub cub, int x, int y, int color)
 	int	ya;
 
 	s = 0;
-	while (++s < 60)
+	while (++s < 64)
 	{
 		u = 0;
-		while (++u < 60)
+		while (++u < 64)
 		{
 			xa = x * MAP_SCALE + s;
 			ya = y * MAP_SCALE + u;
@@ -80,7 +81,7 @@ void	box(t_cub cub, int x, int y, int color)
 	}
 }
 
-void	draw_player(t_cub cub, t_ray ray)
+void	player(t_cub cub, t_ray ray)
 {
 	int		s;
 	int		u;
@@ -96,7 +97,7 @@ void	draw_player(t_cub cub, t_ray ray)
 		{
 			rotated_x = (s * cos(ray.radians) - u * sin(ray.radians)) + cub.px;
 			rotated_y = (s * sin(ray.radians) + u * cos(ray.radians)) + cub.py;
-			set_pixel(cub.img, rotated_x / 3, rotated_y / 3, 0x00FF00);
+			set_pixel(cub.img, rotated_x / 3, rotated_y / 3, 0x000000);
 		}
 	}
 }
@@ -112,5 +113,31 @@ void	black(t_cub cub)
 		y = -1;
 		while (++y < W_HEIGHT)
 			set_pixel(cub.img, x, y, 0);
+	}
+}
+
+void	throw_rays(t_cub cub, t_ray ray)
+{
+	float	r;
+	t_brsh		brsh;
+
+	r = 60.0;
+	while (r > 0.0)
+	{
+		ray.ra = cub.pa - cub.ray.angle + r;
+		vertical(cub, &ray);
+		horizontal(cub, &ray);
+		if (ray.d_v < ray.d_h)
+		{
+			ray.rx = ray.vx;
+			ray.ry = ray.vy;
+			ray.d_h = ray.d_v;
+		}
+		brsh.x0 = cub.px / 3;
+		brsh.y0 = cub.py / 3;
+		brsh.x1 = ray.rx / 3;
+		brsh.y1 = ray.ry / 3;
+		bresenham_line(cub, brsh, 0xFF0000);
+		r -= 0.1;
 	}
 }
