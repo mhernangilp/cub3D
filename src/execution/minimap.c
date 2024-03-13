@@ -31,7 +31,7 @@ void	draw_map2d(t_cub cub, t_ray ray)
 		{
 			if (m[y][x] == '1')
 				box(cub, x, y, 0xFFFFFF);
-			else
+			else if (m[y][x] == '0')
 				box(cub, x, y, 0x808080);
 		}
 	}
@@ -70,15 +70,12 @@ void	box(t_cub cub, int x, int y, int color)
 	s = 0;
 	while (++s < 60)
 	{
-		xa = x * MAP_SCALE + s;
-		ya = y * MAP_SCALE;
-		set_pixel(cub.img, xa, ya, color);
 		u = 0;
 		while (++u < 60)
 		{
 			xa = x * MAP_SCALE + s;
 			ya = y * MAP_SCALE + u;
-			set_pixel(cub.img, xa, ya, color);
+			set_pixel(cub.img, xa / 3, ya / 3, color);
 		}
 	}
 }
@@ -99,7 +96,7 @@ void	draw_player(t_cub cub, t_ray ray)
 		{
 			rotated_x = (s * cos(ray.radians) - u * sin(ray.radians)) + cub.px;
 			rotated_y = (s * sin(ray.radians) + u * cos(ray.radians)) + cub.py;
-			set_pixel(cub.img, rotated_x, rotated_y, 0x00FF00);
+			set_pixel(cub.img, rotated_x / 3, rotated_y / 3, 0x00FF00);
 		}
 	}
 }

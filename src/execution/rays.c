@@ -22,16 +22,15 @@ void	draw_rays2d(t_cub cub, t_ray ray)
 			ray.ry = ray.vy;
 			ray.d_h = ray.d_v;
 		}
-		brsh.x0 = cub.px;
-		brsh.y0 = cub.py;
-		brsh.x1 = ray.rx;
-		brsh.y1 = ray.ry;
+		brsh.x0 = cub.px / 3;
+		brsh.y0 = cub.py / 3;
+		brsh.x1 = ray.rx / 3;
+		brsh.y1 = ray.ry / 3;
 		bresenham_line(cub, brsh, 0xFF0000);
-		brsh.x0 = w * 8 + 530;
+		brsh.x0 = w * 8;
   		brsh.y0 = (W_HEIGHT / 2) - ((MAP_SCALE * 320) / ray.d_h / 2);
-    	brsh.x1 = w * 8 + 530;
+    	brsh.x1 = brsh.x0;
     	brsh.y1 = brsh.y0 + (MAP_SCALE * 320) / ray.d_h;
-    	bresenham_line(cub, brsh, 0x00FF00);
 		r -= 0.1;
 		w += 0.1;
 	}
