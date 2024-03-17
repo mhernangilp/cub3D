@@ -86,7 +86,7 @@ void    ft_map(t_data *data)
     data->mp[3][2] = '1';
     data->mp[3][3] = '0';
     data->mp[3][4] = '0';
-    data->mp[3][5] = '0';
+    data->mp[3][5] = '1';
     data->mp[3][6] = '0';
     data->mp[3][7] = '1';
     data->mp[3][8] = '\0';

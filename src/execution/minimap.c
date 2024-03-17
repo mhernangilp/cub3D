@@ -97,7 +97,7 @@ void	player(t_cub cub, t_ray ray)
 		{
 			rotated_x = (s * cos(ray.radians) - u * sin(ray.radians)) + cub.px;
 			rotated_y = (s * sin(ray.radians) + u * cos(ray.radians)) + cub.py;
-			set_pixel(cub.img, rotated_x / 3, rotated_y / 3, 0x000000);
+			set_pixel(cub.img, rotated_x / 3, rotated_y / 3, 0x0FF000);
 		}
 	}
 }
