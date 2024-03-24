@@ -24,11 +24,12 @@ void	walls(t_cub cub, t_ray ray)
 		while (p++ < 2)
 		{
 			brsh.x0 = w * 10 + p + ha;
-  			brsh.y0 = (W_HEIGHT / 2) - ((MAP_SCALE * 1000) / ray.d_h / 2);
+  			brsh.y0 = (W_HEIGHT / 2) - ((MAP_SCALE * 1150) / ray.d_h / 2);
     		brsh.x1 = brsh.x0;
-    		brsh.y1 = brsh.y0 + (MAP_SCALE * 1000) / ray.d_h;
+    		brsh.y1 = brsh.y0 + (MAP_SCALE * 1150) / ray.d_h;
 			bresenham_line(cub, brsh, 0x00FF00);
 		}
+		printf("x= %d  y= %d  %d\n", brsh.x0, brsh.y0, brsh.y1);
 		r -= 0.1;
 		w += 0.1;
 		ha++;
