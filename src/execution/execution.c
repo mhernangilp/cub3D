@@ -19,7 +19,7 @@ void	execution(t_data data)
 
 	cub.data = data;
 	cub.mlx = mlx_init();
-	cub.win = mlx_new_window(cub.mlx, W_WIDTH, W_HEIGHT, "cub3D");
+	cub.win = mlx_new_window(cub.mlx, W_WIDTH, W_HEIGHT - 90, "cub3D");
 	if (!cub.win)
 		exit_mssg("Wrong window\n");
 	cub.img->img = mlx_new_image(cub.mlx, W_WIDTH, W_HEIGHT);

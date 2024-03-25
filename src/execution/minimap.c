@@ -111,8 +111,16 @@ void	black(t_cub cub)
 	while (++x < W_WIDTH)
 	{
 		y = -1;
+		while (++y < W_HEIGHT / 2)
+			set_pixel(cub.img, x, y, 0x808080);
+	}
+
+	x = -1;
+	while (++x < W_WIDTH)
+	{
+		y = W_HEIGHT / 2 - 1;
 		while (++y < W_HEIGHT)
-			set_pixel(cub.img, x, y, 0);
+			set_pixel(cub.img, x, y, 0xBEBEBE);
 	}
 }
 
