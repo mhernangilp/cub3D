@@ -6,20 +6,21 @@
 /*   By: mhernang <mhernang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 18:16:22 by mhernang          #+#    #+#             */
-/*   Updated: 2024/03/10 20:54:38 by mhernang         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:44:45 by mhernang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D.h"
 
-static void    add_row(char ***map, char *line);
+static void	add_row(char ***map, char *line);
+static void	check_valid_chars(t_map *map);
+static void	check_one_player(t_map *map);
 
 void    check_map(t_map *map)
 {
-    //mira caracteres validos
+    check_valid_chars(map);
     check_borders(map);
-    //mirar pos user;
-    //mirar no haya pos repetidas
+    check_one_player(map);
 }
 
 void    process_map(int fd, char *line, t_data *data)
@@ -40,7 +41,9 @@ void    process_map(int fd, char *line, t_data *data)
             data->map.rows++;
         }
     }
-    data->map.map = map;
+    data->map.map = fill_spaces(map, data->map.rows);
+	//set cols
+	//set player pos && free map
 }
 
 static void    add_row(char ***map, char *line)
@@ -63,4 +66,47 @@ static void    add_row(char ***map, char *line)
     new_map[i + 1] = NULL;
     free(*map);
     *map = new_map;
+}
+
+static void	check_valid_chars(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (map->map[++i])
+	{
+		j = -1;
+		while (map->map[i][++j])
+			if (!(map->map[i][j] == ' ' || map->map[i][j] == '1'
+				|| map->map[i][j] == '0' || map->map[i][j] == 'N'
+				|| map->map[i][j] == 'S' || map->map[i][j] == 'E'
+				|| map->map[i][j] == 'W'))
+				exit_mssg("WRONG MAP: invalid characters detected\n");
+	}
+}
+
+static void	check_one_player(t_map *map)
+{
+	int	i;
+	int	j;
+	int	found;
+
+	i = -1;
+	found = 0;
+	while (map->map[++i])
+	{
+		j = -1;
+		while (map->map[i][++j])
+		{
+			if (map->map[i][j] == 'N' || map->map[i][j] == 'S'
+				|| map->map[i][j] == 'E' || map->map[i][j] == 'W')
+				{
+					printf("Player: %d %d\n", i, j);
+				found += 1;
+				}
+		}
+	}
+	if (found != 1)
+		exit_mssg("WRONG MAP: invalid player configuration\n");
 }
