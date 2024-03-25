@@ -21,12 +21,14 @@ void	window(t_cub *cub)
 	mlx_hook(cub->win, 02, 1L << 0, &keyb, cub);
 	mlx_hook(cub->win, 17, 1L < 17, &exkey, cub);
 	mlx_loop(cub->mlx);
+	mlx_destroy_image(cub->mlx, cub->img->img);
 	mlx_destroy_window(cub->mlx, cub->win);
 	free(cub->mlx);
 }
 
 static int	exkey(t_cub	*cub)
 {
+	mlx_destroy_image(cub->mlx, cub->img->img);
 	mlx_destroy_window(cub->mlx, cub->win);
 	cub->win = NULL;
 	exit(1);
@@ -62,8 +64,8 @@ static void	wasd(t_cub *cub, int key)
 {
 	if (key == 0)
 	{
-		cub->px -= 5 * -sin(cub->ray.angle * (M_PI / 180.0));
-		cub->py -= 5 * cos(cub->ray.angle * (M_PI / 180.0));
+		cub->px += 5 * sin(cub->ray.angle * (M_PI / 180.0));
+		cub->py += 5 * -cos(cub->ray.angle * (M_PI / 180.0));
 	}
 	if (key == 2)
 	{
@@ -77,7 +79,7 @@ static void	wasd(t_cub *cub, int key)
 	}
 	if (key == 1)
 	{
-		cub->px -= 5 * cos(cub->ray.angle * (M_PI / 180.0));
-		cub->py -= 5 * sin(cub->ray.angle * (M_PI / 180.0));
+		cub->px += 5 * -cos(cub->ray.angle * (M_PI / 180.0));
+		cub->py += 5 * -sin(cub->ray.angle * (M_PI / 180.0));
 	}
 }

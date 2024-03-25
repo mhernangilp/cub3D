@@ -47,69 +47,13 @@ void	exit_mssg(char *s)
 void    ft_map(t_data *data)
 {
 	data->mp = malloc((6 + 1) * sizeof(char *));
-	for (int i = 0; i < 6; i++)
-        data->mp[i] = malloc((8 + 1) * sizeof(char));
+	
 
-
-    data->mp[0][0] = '1';
-    data->mp[0][1] = '1';
-    data->mp[0][2] = '1';
-    data->mp[0][3] = '1';
-    data->mp[0][4] = '1';
-    data->mp[0][5] = '1';
-    data->mp[0][6] = '1';
-    data->mp[0][7] = '1';
-    data->mp[0][8] = '\0';
-
-    data->mp[1][0] = '1';
-    data->mp[1][1] = '0';
-    data->mp[1][2] = '1';
-    data->mp[1][3] = '0';
-    data->mp[1][4] = '0';
-    data->mp[1][5] = '0';
-    data->mp[1][6] = '0';
-    data->mp[1][7] = '1';
-    data->mp[1][8] = '\0';
-
-    data->mp[2][0] = '1';
-    data->mp[2][1] = '0';
-    data->mp[2][2] = '1';
-    data->mp[2][3] = '0';
-    data->mp[2][4] = '0';
-    data->mp[2][5] = '0';
-    data->mp[2][6] = '0';
-    data->mp[2][7] = '1';
-    data->mp[2][8] = '\0';
-
-    data->mp[3][0] = '1';
-    data->mp[3][1] = '0';
-    data->mp[3][2] = '1';
-    data->mp[3][3] = '0';
-    data->mp[3][4] = '0';
-    data->mp[3][5] = '1';
-    data->mp[3][6] = '0';
-    data->mp[3][7] = '1';
-    data->mp[3][8] = '\0';
-
-    data->mp[4][0] = '1';
-    data->mp[4][1] = '0';
-    data->mp[4][2] = '0';
-    data->mp[4][3] = '0';
-    data->mp[4][4] = '0';
-    data->mp[4][5] = '0';
-    data->mp[4][6] = '0';
-    data->mp[4][7] = '1';
-    data->mp[4][8] = '\0';
-
-	data->mp[5][0] = '1';
-    data->mp[5][1] = '1';
-    data->mp[5][2] = '1';
-    data->mp[5][3] = '1';
-    data->mp[5][4] = '1';
-    data->mp[5][5] = '1';
-    data->mp[5][6] = '1';
-    data->mp[5][7] = '1';
-    data->mp[5][8] = '\0';
-
+    data->mp[0] = ft_strdup("11111111\0");
+    data->mp[1] = ft_strdup("10100001\0");
+    data->mp[2] = ft_strdup("10100001\0");
+    data->mp[3] = ft_strdup("10001001\0");
+    data->mp[4] = ft_strdup("10000001\0");
+    data->mp[5] = ft_strdup("11111111\0");
     data->mp[6] = NULL;
 }

@@ -17,6 +17,8 @@ int		brsh_variables(t_brsh *brsh);
 
 void	set_pixel(t_img *img, int x, int y, int color)
 {
+	if (x < 0 || x > W_WIDTH || y < 0 || y > W_HEIGHT)
+		return ;
 	img->addr = mlx_get_data_addr(img->img, &img->bits,
 			&img->line, &img->end);
 	if (x > 0 && x < W_WIDTH && y > 0 && y < W_HEIGHT - 90)
