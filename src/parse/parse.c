@@ -6,7 +6,7 @@
 /*   By: mhernang <mhernang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 15:12:49 by gfernand          #+#    #+#             */
-/*   Updated: 2024/03/25 19:13:19 by mhernang         ###   ########.fr       */
+/*   Updated: 2024/03/27 14:35:59 by mhernang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static void	read_file(int fd, t_data *data)
 		exit_mssg("WRONG MAP: missing information\n");
 	process_map(fd, line, data);
 	
-	printf("MAP:\n");
+	printf("FILLED MAP:\n");
 	int i = -1;
 	while (data->map.map[++i])
 		printf("%s|\n", data->map.map[i]);

@@ -6,7 +6,7 @@
 /*   By: mhernang <mhernang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 18:16:22 by mhernang          #+#    #+#             */
-/*   Updated: 2024/03/25 18:44:45 by mhernang         ###   ########.fr       */
+/*   Updated: 2024/03/27 18:02:56 by mhernang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,13 @@ static void	check_one_player(t_map *map);
 
 void    check_map(t_map *map)
 {
-    check_valid_chars(map);
     check_borders(map);
-    check_one_player(map);
 }
 
 void    process_map(int fd, char *line, t_data *data)
 {
     char    **map;
+    int     cols;
 
     map = malloc(sizeof(char *) * 2);
     map[0] = ft_substr(line, 0, ft_strlen(line) - 1);
@@ -41,9 +40,14 @@ void    process_map(int fd, char *line, t_data *data)
             data->map.rows++;
         }
     }
-    data->map.map = fill_spaces(map, data->map.rows);
-	//set cols
-	//set player pos && free map
+    data->map.map = map;
+    check_valid_chars(&data->map);
+    check_one_player(&data->map);
+    set_player_pos(data);
+    data->map.map = fill_spaces(map, data->map.rows, &cols);
+	data->map.cols = cols;
+    printf("Player(%d, %d), cols: %d\n", data->map.player_pos.x, data->map.player_pos.y, data->map.cols);
+    free_map(&map);
 }
 
 static void    add_row(char ***map, char *line)
@@ -101,10 +105,7 @@ static void	check_one_player(t_map *map)
 		{
 			if (map->map[i][j] == 'N' || map->map[i][j] == 'S'
 				|| map->map[i][j] == 'E' || map->map[i][j] == 'W')
-				{
-					printf("Player: %d %d\n", i, j);
 				found += 1;
-				}
 		}
 	}
 	if (found != 1)
