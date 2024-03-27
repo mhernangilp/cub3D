@@ -6,7 +6,7 @@
 /*   By: mhernang <mhernang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:01:44 by gfernand          #+#    #+#             */
-/*   Updated: 2024/03/10 20:21:15 by mhernang         ###   ########.fr       */
+/*   Updated: 2024/03/27 17:50:37 by mhernang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,18 @@
 # define WIDTH 1200
 # define HEIGHT 675
 
+typedef struct s_player
+{
+	int	x;
+	int	y;
+}	t_player;
+
 typedef struct s_map
 {
-	char	**map;
-	int		rows;
+	char		**map;
+	int			rows;
+	int			cols;
+	t_player	player_pos;
 }	t_map;
 
 typedef struct RGB
@@ -63,15 +71,20 @@ void	error_msg(char *err);
 void	parse(char *file, t_data *data);
 
 /* PARSE_UTILS */
+void    free_map(char ***map);
+void    set_player_pos(t_data *data);
 int	ft_strrncmp(char *s1, char *s2, int n);
 int is_map(char *line);
 
 /* PROCESS */
 void	process_line(char *line, t_data *data);
 
-/* PROCESS MAP */
+/* PROCESS_MAP */
 void    check_map(t_map *map);
 void    process_map(int fd, char *line, t_data *data);
+
+/* FILL_SPACES*/
+char    **fill_spaces(char **original, int rows, int *cols);
 
 /* CHECK_BORDERS*/
 void    check_borders(t_map *map);

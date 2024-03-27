@@ -6,25 +6,25 @@
 /*   By: mhernang <mhernang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 18:16:22 by mhernang          #+#    #+#             */
-/*   Updated: 2024/03/10 20:54:38 by mhernang         ###   ########.fr       */
+/*   Updated: 2024/03/27 18:02:56 by mhernang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D.h"
 
-static void    add_row(char ***map, char *line);
+static void	add_row(char ***map, char *line);
+static void	check_valid_chars(t_map *map);
+static void	check_one_player(t_map *map);
 
 void    check_map(t_map *map)
 {
-    //mira caracteres validos
     check_borders(map);
-    //mirar pos user;
-    //mirar no haya pos repetidas
 }
 
 void    process_map(int fd, char *line, t_data *data)
 {
     char    **map;
+    int     cols;
 
     map = malloc(sizeof(char *) * 2);
     map[0] = ft_substr(line, 0, ft_strlen(line) - 1);
@@ -41,6 +41,13 @@ void    process_map(int fd, char *line, t_data *data)
         }
     }
     data->map.map = map;
+    check_valid_chars(&data->map);
+    check_one_player(&data->map);
+    set_player_pos(data);
+    data->map.map = fill_spaces(map, data->map.rows, &cols);
+	data->map.cols = cols;
+    printf("Player(%d, %d), cols: %d\n", data->map.player_pos.x, data->map.player_pos.y, data->map.cols);
+    free_map(&map);
 }
 
 static void    add_row(char ***map, char *line)
@@ -63,4 +70,44 @@ static void    add_row(char ***map, char *line)
     new_map[i + 1] = NULL;
     free(*map);
     *map = new_map;
+}
+
+static void	check_valid_chars(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (map->map[++i])
+	{
+		j = -1;
+		while (map->map[i][++j])
+			if (!(map->map[i][j] == ' ' || map->map[i][j] == '1'
+				|| map->map[i][j] == '0' || map->map[i][j] == 'N'
+				|| map->map[i][j] == 'S' || map->map[i][j] == 'E'
+				|| map->map[i][j] == 'W'))
+				exit_mssg("WRONG MAP: invalid characters detected\n");
+	}
+}
+
+static void	check_one_player(t_map *map)
+{
+	int	i;
+	int	j;
+	int	found;
+
+	i = -1;
+	found = 0;
+	while (map->map[++i])
+	{
+		j = -1;
+		while (map->map[i][++j])
+		{
+			if (map->map[i][j] == 'N' || map->map[i][j] == 'S'
+				|| map->map[i][j] == 'E' || map->map[i][j] == 'W')
+				found += 1;
+		}
+	}
+	if (found != 1)
+		exit_mssg("WRONG MAP: invalid player configuration\n");
 }

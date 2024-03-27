@@ -6,7 +6,7 @@
 /*   By: mhernang <mhernang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 15:12:49 by gfernand          #+#    #+#             */
-/*   Updated: 2024/03/10 19:16:03 by mhernang         ###   ########.fr       */
+/*   Updated: 2024/03/27 14:35:59 by mhernang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ static void	initialize_data(t_data *data)
 	data -> C.B = -1;
 	data -> map.map = NULL;
 	data -> map.rows = 0;
+	data -> map.cols = -1;
+	data -> map.player_pos.x = -1;
+	data -> map.player_pos.y = -1;
 }
 
 static void	read_file(int fd, t_data *data)
@@ -72,5 +75,11 @@ static void	read_file(int fd, t_data *data)
 		|| data -> C.R == -1 || data -> C.G == -1 || data -> C.B == -1)
 		exit_mssg("WRONG MAP: missing information\n");
 	process_map(fd, line, data);
+	
+	printf("FILLED MAP:\n");
+	int i = -1;
+	while (data->map.map[++i])
+		printf("%s|\n", data->map.map[i]);
+
 	check_map(&data->map);
 }
