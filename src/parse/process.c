@@ -6,7 +6,7 @@
 /*   By: mhernang <mhernang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 14:28:12 by mhernang          #+#    #+#             */
-/*   Updated: 2024/02/25 18:09:51 by mhernang         ###   ########.fr       */
+/*   Updated: 2024/03/27 19:13:39 by mhernang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static void process_texture(char *line, t_data *data);
 static void process_color(char *line, t_data *data);
-static void set_colors(char type, t_data *data, t_RGB color);
+static void	check_colors_length(char **colors);
+static void rgb_to_hex(char type, t_data *data, t_RGB color);
 
 void	process_line(char *line, t_data *data)
 {
@@ -66,61 +67,44 @@ static void process_texture(char *line, t_data *data)
 static void process_color(char *line, t_data *data)
 {
     int     i;
-    t_RGB   color;
+    char    **colors;
+    t_RGB   colorRGB;
 
-    i = 2;
-    while (line[i] && line[i] == ' ')
-        i++;
-    if (!ft_isdigit(line[i])) {
-        color.R = color.G = color.B = -1;
-        printf("R:%d G:%d B:%d\n", color.R, color.G, color.B);
-        return;
-    }
-    color.R = ft_atoi(&line[i]);
-    if (color.R < 0 || color.R > 255)
-        color.R = -1;
-    while (line[i] && line[i] != ',')
-        i++;
-    if (line[i])
-        i++;
-    if (!ft_isdigit(line[i])) {
-        color.G = color.B = -1;
-        printf("R:%d G:%d B:%d\n", color.R, color.G, color.B);
-        return;
-    }
-    color.G = ft_atoi(&line[i]);
-    if (color.G < 0 || color.G > 255)
-        color.G = -1;
-    while (line[i] && line[i] != ',')
-        i++;
-    
-    if (line[i])
-        i++;
-    if (!ft_isdigit(line[i])) {
-        color.B = -1;
-        printf("R:%d G:%d B:%d\n", color.R, color.G, color.B);
-        return;
-    }
-    color.B = ft_atoi(&line[i]);
-    if (color.B < 0 || color.B > 255)
-        color.B = -1;
-    
-    printf("R:%d G:%d B:%d\n", color.R, color.G, color.B);
-    set_colors(line[0], data, color);
+	i = 2;
+	while (line[i] && line[i] == ' ')
+		i++;
+	colors = ft_split(&line[i], ',');
+	check_colors_length(colors);
+	colorRGB.R = ft_atoi(colors[0]);
+	colorRGB.G = ft_atoi(colors[1]);
+	colorRGB.B = ft_atoi(colors[2]);
+	if (colorRGB.R < 0 || colorRGB.R > 255 || colorRGB.G < 0
+		|| colorRGB.G > 255 || colorRGB.B < 0 || colorRGB.B > 255)
+        exit_mssg("WRONG MAP: invalid colors\n");
+	rgb_to_hex(line[0], data, colorRGB);
+	free_map(&colors);
 }
 
-static void set_colors(char type, t_data *data, t_RGB color)
+static void rgb_to_hex(char type, t_data *data, t_RGB color)
 {
+	int	hex;
+
+	hex = (color.R << 16) | (color.G << 8) | color.B;
+	hex |= 0xFF000000;
+	printf("Parseamos el color (%d, %d, %d) a hex: 0x%08X\n", color.R, color.G, color.B, hex);
     if (type == 'F')
-    {
-        data -> F.R = color.R;
-        data -> F.G = color.G;
-        data -> F.B = color.B;
-    }
+        data -> F = hex;
     if (type == 'C')
-    {
-        data -> C.R = color.R;
-        data -> C.G = color.G;
-        data -> C.B = color.B;
-    }
+        data -> C = hex;
+}
+
+static void	check_colors_length(char **colors)
+{
+	int	i;
+
+	i = 0;
+	while (colors[i])
+		i++;
+	if (i != 3)
+		exit_mssg("WRONG MAP: invalid colors\n");
 }

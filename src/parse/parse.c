@@ -6,7 +6,7 @@
 /*   By: mhernang <mhernang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 15:12:49 by gfernand          #+#    #+#             */
-/*   Updated: 2024/03/27 14:35:59 by mhernang         ###   ########.fr       */
+/*   Updated: 2024/03/27 19:11:58 by mhernang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,8 @@ static void	initialize_data(t_data *data)
 	data -> SO = NULL;
 	data -> WE = NULL;
 	data -> EA = NULL;
-	data -> F.R = -1;
-	data -> F.G = -1;
-	data -> F.B = -1;
-	data -> C.R = -1;
-	data -> C.G = -1;
-	data -> C.B = -1;
+	data -> F = -1;
+	data -> C = -1;
 	data -> map.map = NULL;
 	data -> map.rows = 0;
 	data -> map.cols = -1;
@@ -71,8 +67,7 @@ static void	read_file(int fd, t_data *data)
 	if (!line)
 		exit_mssg("WRONG MAP: no map found\n");
 	if (!data -> NO || !data -> SO || !data -> WE || !data -> EA
-		|| data -> F.R == -1|| data -> F.G == -1 || data -> F.B == -1
-		|| data -> C.R == -1 || data -> C.G == -1 || data -> C.B == -1)
+		|| data -> F == -1 || data -> C == -1)
 		exit_mssg("WRONG MAP: missing information\n");
 	process_map(fd, line, data);
 	

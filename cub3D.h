@@ -6,7 +6,7 @@
 /*   By: mhernang <mhernang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:01:44 by gfernand          #+#    #+#             */
-/*   Updated: 2024/03/27 17:50:37 by mhernang         ###   ########.fr       */
+/*   Updated: 2024/03/27 18:52:58 by mhernang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ typedef struct data
 	char	*SO;
 	char	*WE;
 	char	*EA;
-	t_RGB	F;
-	t_RGB	C;
+	int		F;
+	int		C;
 	t_map	map;
 }	t_data;
 
