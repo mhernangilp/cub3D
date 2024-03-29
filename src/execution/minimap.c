@@ -92,7 +92,6 @@ void	black(t_cub cub)
 		while (++y < W_HEIGHT / 2)
 			set_pixel(cub.img, x, y, 0x808080);
 	}
-
 	x = -1;
 	while (++x < W_WIDTH)
 	{
@@ -105,7 +104,7 @@ void	black(t_cub cub)
 void	throw_rays(t_cub cub, t_ray ray)
 {
 	float	r;
-	t_brsh		brsh;
+	t_brsh	brsh;
 
 	r = 60.0;
 	while (r > 0.0)

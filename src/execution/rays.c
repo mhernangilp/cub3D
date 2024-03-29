@@ -12,11 +12,11 @@
 
 #include "../../cub3D.h"
 
+void	vertical_loop(t_cub cub, t_ray *ray);
+void	horizontal_loop(t_cub cub, t_ray *ray);
+
 void	vertical(t_cub cub, t_ray *ray)
 {
-	int	mx;
-	int	my;
-
 	ray->dof = 0;
 	ray->d_v = 100000;
 	ray->tan = tan(ray->ra * (PI / 180.0));
@@ -38,16 +38,26 @@ void	vertical(t_cub cub, t_ray *ray)
 	{
 		ray->rx = cub.px;
 		ray->ry = cub.py;
-		ray->dof = 8;
+		ray->dof = cub.map_w;
 	}
-	while (ray->dof < 8)
+	vertical_loop(cub, ray);
+}
+
+void	vertical_loop(t_cub cub, t_ray *ray)
+{
+	int	mx;
+	int	my;
+
+	while (ray->dof < cub.map_w)
 	{
 		mx = (int)(ray->rx) >> 6;
 		my = (int)(ray->ry) >> 6;
-		if (my >= 0 && my < cub.map_h && mx >= 0 && mx < cub.map_w && cub.data.mp[my][mx] == '1')
+		if (my >= 0 && my < cub.map_h && mx >= 0 && mx < cub.map_w
+			&& cub.data.mp[my][mx] == '1')
 		{
-			ray->dof = 8;
-			ray->d_v = cos(ray->ra * (PI / 180.0)) * (ray->rx - cub.px) - sin(ray->ra * (PI / 180.0)) * (ray->ry - cub.py);
+			ray->dof = cub.map_w;
+			ray->d_v = cos(ray->ra * (PI / 180.0)) * (ray->rx - cub.px)
+				- sin(ray->ra * (PI / 180.0)) * (ray->ry - cub.py);
 		}
 		else
 		{
@@ -62,9 +72,6 @@ void	vertical(t_cub cub, t_ray *ray)
 
 void	horizontal(t_cub cub, t_ray *ray)
 {
-	int	mx;
-	int	my;
-
 	ray->dof = 0;
 	ray->d_h = 100000;
 	ray->tan = 1.0 / ray->tan;
@@ -86,16 +93,26 @@ void	horizontal(t_cub cub, t_ray *ray)
 	{
 		ray->rx = cub.px;
 		ray->ry = cub.py;
-		ray->dof = 8;
+		ray->dof = cub.map_h;
 	}
-	while (ray->dof < 8)
+	horizontal_loop(cub, ray);
+}
+
+void	horizontal_loop(t_cub cub, t_ray *ray)
+{
+	int	mx;
+	int	my;
+
+	while (ray->dof < cub.map_h)
 	{
 		mx = (int)(ray->rx) >> 6;
 		my = (int)(ray->ry) >> 6;
-		if (my >= 0 && my < cub.map_h && mx >= 0 && mx < cub.map_w && cub.data.mp[my][mx] == '1')
+		if (my >= 0 && my < cub.map_h && mx >= 0 && mx < cub.map_w
+			&& cub.data.mp[my][mx] == '1')
 		{
-			ray->dof = 8;
-			ray->d_h = cos(ray->ra * (PI / 180.0)) * (ray->rx - cub.px) - sin(ray->ra * (PI / 180.0)) * (ray->ry - cub.py);
+			ray->dof = cub.map_h;
+			ray->d_h = cos(ray->ra * (PI / 180.0)) * (ray->rx - cub.px)
+				- sin(ray->ra * (PI / 180.0)) * (ray->ry - cub.py);
 		}
 		else
 		{

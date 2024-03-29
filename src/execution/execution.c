@@ -12,7 +12,7 @@
 
 #include "../../cub3D.h"
 
-void    init_img(t_cub cub)
+void	init_img(t_cub cub)
 {
 	cub.img->bits = 32;
 	cub.img->line = W_WIDTH * 4;

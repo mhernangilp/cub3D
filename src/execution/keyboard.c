@@ -51,7 +51,8 @@ static int	keyb(int key, t_cub *cub)
 		cub->ray.angle -= 360;
 	if (cub->ray.angle < -360)
 		cub->ray.angle += 360;
-	if (key == 0 || key == 1 || key == 2 || key == 13 || key == 123 || key == 124)
+	if (key == 0 || key == 1 || key == 2 || key == 13
+		|| key == 123 || key == 124)
 	{
 		mlx_clear_window(cub->mlx, cub->win);
 		map2d(*cub, cub->ray);

@@ -59,6 +59,7 @@ typedef struct data
 
 typedef struct s_ray
 {
+	int		color;
 	int		angle;
 	float	radians;
 	int		look;
