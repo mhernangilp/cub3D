@@ -12,7 +12,7 @@
 
 #include "../../cub3D.h"
 
-void    ini_img(t_cub cub)
+void    init_img(t_cub cub)
 {
 	cub.img->bits = 32;
 	cub.img->line = W_WIDTH * 4;
@@ -35,10 +35,10 @@ void	execution(t_data data)
 	cub.py = 250;
 	ray.angle = 0;
 	cub.pa = -30;
-	cub.map_h = 6;
-	cub.map_w = 8;
+	cub.map_h = 12;
+	cub.map_w = 12;
 	cub.ray = ray;
-	ini_img(cub);
+	init_img(cub);
 	map2d(cub, ray);
 	mlx_put_image_to_window(cub.mlx, cub.win, cub.img->img, 0, 0);
 	window(&cub);

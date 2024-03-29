@@ -29,6 +29,7 @@
 
 #define SQR_SIZE 10
 #define MAP_SCALE 64 //map cube size
+#define IMG_SCALE 32
 
 typedef struct s_map
 {

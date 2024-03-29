@@ -44,9 +44,9 @@ static int	keyb(int key, t_cub *cub)
 	}
 	wasd(cub, key);
 	if (key == 123)
-		cub->ray.angle -= 8;
+		cub->ray.angle -= 10;
 	if (key == 124)
-		cub->ray.angle += 8;
+		cub->ray.angle += 10;
 	if (cub->ray.angle > 360)
 		cub->ray.angle -= 360;
 	if (cub->ray.angle < -360)
@@ -64,22 +64,22 @@ static void	wasd(t_cub *cub, int key)
 {
 	if (key == 0)
 	{
-		cub->px += 5 * sin(cub->ray.angle * (M_PI / 180.0));
-		cub->py += 5 * -cos(cub->ray.angle * (M_PI / 180.0));
+		cub->px += 10 * sin(cub->ray.angle * (M_PI / 180.0));
+		cub->py += 10 * -cos(cub->ray.angle * (M_PI / 180.0));
 	}
 	if (key == 2)
 	{
-		cub->px += 5 * -sin(cub->ray.angle * (M_PI / 180.0));
-		cub->py += 5 * cos(cub->ray.angle * (M_PI / 180.0));
+		cub->px += 10 * -sin(cub->ray.angle * (M_PI / 180.0));
+		cub->py += 10 * cos(cub->ray.angle * (M_PI / 180.0));
 	}
 	if (key == 13)
 	{
-		cub->px += 5 * cos(cub->ray.angle * (M_PI / 180.0));
-		cub->py += 5 * sin(cub->ray.angle * (M_PI / 180.0));
+		cub->px += 10 * cos(cub->ray.angle * (M_PI / 180.0));
+		cub->py += 10 * sin(cub->ray.angle * (M_PI / 180.0));
 	}
 	if (key == 1)
 	{
-		cub->px += 5 * -cos(cub->ray.angle * (M_PI / 180.0));
-		cub->py += 5 * -sin(cub->ray.angle * (M_PI / 180.0));
+		cub->px += 10 * -cos(cub->ray.angle * (M_PI / 180.0));
+		cub->py += 10 * -sin(cub->ray.angle * (M_PI / 180.0));
 	}
 }

@@ -12,7 +12,6 @@
 
 #include "../../cub3D.h"
 
-void	rd_angle(t_ray ray);
 void	black(t_cub cub);
 
 void	map2d(t_cub cub, t_ray ray)
@@ -38,27 +37,6 @@ void	map2d(t_cub cub, t_ray ray)
 	}
 	player(cub, ray);
 	throw_rays(cub, ray);
-	rd_angle(ray);
-}
-
-void	rd_angle(t_ray ray)
-{
-	int	ag;
-
-	ag = ray.angle;
-	ray.radians = ag *(PI / 180.0);
-	if (ray.radians < 0)
-		ray.radians += 2 * PI;
-	if (ray.radians > 2 * PI)
-		ray.radians -= 2 * PI;
-	if ((ag > 180 && ag < 360) || (ag < 0 && ag > -180))
-		ray.look = 1; /* Arriba */
-	else if ((ag > 0 && ag < 180) || (ag < -180 && ag > -360))
-		ray.look = 2; /* Debajo */
-	else if (ag == 180 || ag == -180)
-		ray.look = 3; /* Izquierda */
-	else if (ag == 0 || ag == 360 || ag == -360)
-		ray.look = 4; /* Derecha */
 }
 
 void	box(t_cub cub, int x, int y, int color)
