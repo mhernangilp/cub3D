@@ -19,6 +19,38 @@ void	init_img(t_cub cub)
 	cub.img->end = 0;
 }
 
+void	start_position(t_cub *cub, t_ray *ray)
+{
+	int		x;
+	int		y;
+	char	**map;
+
+	map = cub->data.mp;
+	y = -1;
+	while (map[++y])
+	{
+		x = -1;
+		while (map[y][++x])
+		{
+			if (map[y][x] == 'N' || map[y][x] == 'S'
+				|| map[y][x] == 'E' || map[y][x] == 'W')
+			{
+				cub->px = x * MAP_SCALE + MAP_SCALE / 2;
+				cub->py = y * MAP_SCALE + MAP_SCALE / 2;
+				if (map[y][x] == 'N')
+					ray->angle = 270;
+				if (map[y][x] == 'S')
+					ray->angle = 90;
+				if (map[y][x] == 'E')
+					ray->angle = 0;
+				if (map[y][x] == 'W')
+					ray->angle = 180;
+				map[y][x] = '0';
+			}
+		}
+	}
+}
+
 void	execution(t_data data)
 {
 	t_cub	cub;
@@ -35,6 +67,7 @@ void	execution(t_data data)
 	cub.py = 250;
 	ray.angle = 0;
 	cub.pa = -30;
+	start_position(&cub, &ray);
 	cub.map_h = 12;
 	cub.map_w = 12;
 	cub.ray = ray;
@@ -42,4 +75,5 @@ void	execution(t_data data)
 	map2d(cub, ray);
 	mlx_put_image_to_window(cub.mlx, cub.win, cub.img->img, 0, 0);
 	window(&cub);
+	free(cub.img);
 }

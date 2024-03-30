@@ -59,7 +59,7 @@ void    ft_map(t_data *data)
     data->mp[7] = ft_strdup("101000000001\0");
     data->mp[8] = ft_strdup("101000000001\0");
     data->mp[9] = ft_strdup("100010000001\0");
-    data->mp[10] = ft_strdup("100000000001\0");
+    data->mp[10] = ft_strdup("1000000000W1\0");
     data->mp[11] = ft_strdup("111111111111\0");
     data->mp[12] = NULL;
 }
