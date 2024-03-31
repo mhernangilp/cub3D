@@ -63,9 +63,6 @@ void	execution(t_data data)
 		exit_mssg("Wrong window\n");
 	cub.img = malloc (sizeof (t_img));
 	cub.img->img = mlx_new_image(cub.mlx, W_WIDTH, W_HEIGHT);
-	cub.px = 200;
-	cub.py = 250;
-	ray.angle = 0;
 	cub.pa = -30;
 	start_position(&cub, &ray);
 	cub.map_h = 12;
