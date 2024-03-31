@@ -6,7 +6,7 @@
 /*   By: mhernang <mhernang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 15:12:49 by gfernand          #+#    #+#             */
-/*   Updated: 2024/03/27 19:11:58 by mhernang         ###   ########.fr       */
+/*   Updated: 2024/03/31 14:24:36 by mhernang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ static void	read_file(int fd, t_data *data)
 	char	*line;
 
 	line = get_next_line(fd);
-	while (line && !is_map(line))
+	while (line && !elements_full(data))
 	{
 		process_line(line, data);
-		printf("%s", line);
+		free(line);
 		line = get_next_line(fd);
 	}
 	if (!line)
@@ -70,11 +70,5 @@ static void	read_file(int fd, t_data *data)
 		|| data -> F == -1 || data -> C == -1)
 		exit_mssg("WRONG MAP: missing information\n");
 	process_map(fd, line, data);
-	
-	printf("FILLED MAP:\n");
-	int i = -1;
-	while (data->map.map[++i])
-		printf("%s|\n", data->map.map[i]);
-
-	check_map(&data->map);
+	check_borders(&data->map);
 }

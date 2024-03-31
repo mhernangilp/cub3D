@@ -6,7 +6,7 @@
 /*   By: mhernang <mhernang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 14:28:12 by mhernang          #+#    #+#             */
-/*   Updated: 2024/03/27 19:13:39 by mhernang         ###   ########.fr       */
+/*   Updated: 2024/03/31 14:24:41 by mhernang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,18 @@ void	process_line(char *line, t_data *data)
 		line++;
 	if (*line == 'N' && (*(line + 1) && *(line + 1) == 'O') && (*(line + 2) && *(line + 2) == ' '))
 		process_texture(line, data);
-	if (*line == 'S' && (*(line + 1) && *(line + 1) == 'O') && (*(line + 2) && *(line + 2) == ' '))
+	else if (*line == 'S' && (*(line + 1) && *(line + 1) == 'O') && (*(line + 2) && *(line + 2) == ' '))
 		process_texture(line, data);
-	if (*line == 'W' && (*(line + 1) && *(line + 1) == 'E') && (*(line + 2) && *(line + 2) == ' '))
+	else if (*line == 'W' && (*(line + 1) && *(line + 1) == 'E') && (*(line + 2) && *(line + 2) == ' '))
 		process_texture(line, data);
-	if (*line == 'E' && (*(line + 1) && *(line + 1) == 'A') && (*(line + 2) && *(line + 2) == ' '))
+	else if (*line == 'E' && (*(line + 1) && *(line + 1) == 'A') && (*(line + 2) && *(line + 2) == ' '))
 		process_texture(line, data);
-	if (*line == 'F' && (*(line + 1) && *(line + 1) == ' '))
+	else if (*line == 'F' && (*(line + 1) && *(line + 1) == ' '))
 		process_color(line, data);
-	if (*line == 'C' && (*(line + 1) && *(line + 1) == ' '))
+	else if (*line == 'C' && (*(line + 1) && *(line + 1) == ' '))
 		process_color(line, data);
+	else if (*line && *line != '\n')
+		exit_mssg("WRONG MAP: wrong elements configuration\n");
 }
 
 static void process_texture(char *line, t_data *data)
@@ -49,7 +51,6 @@ static void process_texture(char *line, t_data *data)
     while (line[i] && line[i] != ' ' && line[i] != '\n')
         i++;
     path = ft_substr(line, start, i - start);
-    printf("%s\n", path);
     fd = open(path, O_RDONLY);
     if (fd < 0)
         error_msg("Error\nInvalid texture");
@@ -91,7 +92,6 @@ static void rgb_to_hex(char type, t_data *data, t_RGB color)
 
 	hex = (color.R << 16) | (color.G << 8) | color.B;
 	hex |= 0xFF000000;
-	printf("Parseamos el color (%d, %d, %d) a hex: 0x%08X\n", color.R, color.G, color.B, hex);
     if (type == 'F')
         data -> F = hex;
     if (type == 'C')

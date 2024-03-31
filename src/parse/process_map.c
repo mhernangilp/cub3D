@@ -6,7 +6,7 @@
 /*   By: mhernang <mhernang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 18:16:22 by mhernang          #+#    #+#             */
-/*   Updated: 2024/03/27 18:02:56 by mhernang         ###   ########.fr       */
+/*   Updated: 2024/03/31 14:20:51 by mhernang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,6 @@
 static void	add_row(char ***map, char *line);
 static void	check_valid_chars(t_map *map);
 static void	check_one_player(t_map *map);
-
-void    check_map(t_map *map)
-{
-    check_borders(map);
-}
 
 void    process_map(int fd, char *line, t_data *data)
 {
@@ -46,7 +41,6 @@ void    process_map(int fd, char *line, t_data *data)
     set_player_pos(data);
     data->map.map = fill_spaces(map, data->map.rows, &cols);
 	data->map.cols = cols;
-    printf("Player(%d, %d), cols: %d\n", data->map.player_pos.x, data->map.player_pos.y, data->map.cols);
     free_map(&map);
 }
 
