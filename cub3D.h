@@ -6,7 +6,7 @@
 /*   By: mhernang <mhernang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:01:44 by gfernand          #+#    #+#             */
-/*   Updated: 2024/04/07 12:19:10 by mhernang         ###   ########.fr       */
+/*   Updated: 2024/04/07 17:27:44 by mhernang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@
 
 typedef struct s_player
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
+	char 	dir;
 }	t_player;
 
 typedef struct s_map

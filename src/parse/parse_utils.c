@@ -24,6 +24,7 @@ void    set_player_pos(t_data *data)
             {
                 data->map.player_pos.y = i;
                 data->map.player_pos.x = j;
+                data->map.player_pos.dir = data->map.map[i][j];
                 return ;
             }
     }
