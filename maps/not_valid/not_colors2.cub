@@ -3,8 +3,8 @@ SO ./textures/textureSO
 WE ./textures/textureWE
 EA ./textures/textureEA
 
-F 220,100,0
-C 225,30,0
+F 220,-50,0
+C 225,500,0
 
         1111111111111111111111111
         1000000000110000000000001
