@@ -6,7 +6,7 @@
 /*   By: mhernang <mhernang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:01:44 by gfernand          #+#    #+#             */
-/*   Updated: 2024/02/25 18:26:16 by mhernang         ###   ########.fr       */
+/*   Updated: 2024/04/07 12:19:10 by mhernang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,18 @@
 # define WIDTH 1200
 # define HEIGHT 675
 
+typedef struct s_player
+{
+	int	x;
+	int	y;
+}	t_player;
+
 typedef struct s_map
 {
-	char	**map;
-	int		rows;
-	int		cols;
+	char		**map;
+	int			rows;
+	int			cols;
+	t_player	player_pos;
 }	t_map;
 
 typedef struct RGB
@@ -44,8 +51,8 @@ typedef struct data
 	char	*SO;
 	char	*WE;
 	char	*EA;
-	t_RGB	F;
-	t_RGB	C;
+	int		F;
+	int		C;
 	t_map	map;
 }	t_data;
 
@@ -64,14 +71,24 @@ void	error_msg(char *err);
 void	parse(char *file, t_data *data);
 
 /* PARSE_UTILS */
+void    free_map(char ***map);
+void    set_player_pos(t_data *data);
 int	ft_strrncmp(char *s1, char *s2, int n);
-int is_map(char *line);
+int elements_full(t_data *data);
+int	is_zero(char *str);
 
 /* PROCESS */
 void	process_line(char *line, t_data *data);
 
-/* PROCESS MAP */
+/* PROCESS_MAP */
 void    process_map(int fd, char *line, t_data *data);
+
+/* FILL_SPACES*/
+char    **fill_spaces(char **original, int rows, int *cols);
+
+/* CHECK_BORDERS*/
+void    check_borders(t_map *map);
+
 /* EXECUTION */
 void	execution();
 

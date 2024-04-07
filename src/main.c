@@ -6,24 +6,24 @@
 /*   By: mhernang <mhernang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:13:32 by gfernand          #+#    #+#             */
-/*   Updated: 2024/02/25 18:41:53 by mhernang         ###   ########.fr       */
+/*   Updated: 2024/03/31 14:21:25 by mhernang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
 
-static void	data_test(t_data *data);
+//static void	data_test(t_data *data);
 
-void	leaks(void)
+/*void	leaks(void)
 {
 	system("leaks cub3D");
-}
+}*/
 
 int	main(int arg, char **argv)
 {
 	t_data	data;
 
-	atexit(leaks);
+	//atexit(leaks);
 	if (arg < 2)
 		exit_mssg("Error\n2 arguments are spected\n");
 	parse(argv[1], &data);
@@ -48,7 +48,7 @@ void	error_msg(char *err)
 	perror(err);
 	exit (1);
 }
-
+/*
 static void	data_test(t_data *data)
 {
 	data->NO = ft_strdup("./textures/textureNO");
@@ -69,4 +69,4 @@ static void	data_test(t_data *data)
 	data->map.map[4] = ft_strdup("111111");
 	data->map.rows = 5;
 	data->map.cols = 6;
-}
+}*/
