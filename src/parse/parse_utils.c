@@ -51,3 +51,17 @@ int elements_full(t_data *data)
     return (data -> NO && data -> SO && data -> WE
         && data -> EA && data -> F != -1 && data -> C != -1);
 }
+
+int	is_zero(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str[i] == '+' || str[i] == '-')
+		i++;
+	while (str[i] && str[i] == '0')
+		i++;
+	if (str[i] != '\0')
+		return (0);
+	return (1);
+}

@@ -6,7 +6,7 @@
 /*   By: mhernang <mhernang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:01:44 by gfernand          #+#    #+#             */
-/*   Updated: 2024/03/31 14:16:22 by mhernang         ###   ########.fr       */
+/*   Updated: 2024/04/07 12:19:10 by mhernang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void    free_map(char ***map);
 void    set_player_pos(t_data *data);
 int	ft_strrncmp(char *s1, char *s2, int n);
 int elements_full(t_data *data);
+int	is_zero(char *str);
 
 /* PROCESS */
 void	process_line(char *line, t_data *data);
