@@ -20,13 +20,13 @@ void    set_player_pos(t_data *data)
     {
         j = -1;
         while (data->map.map[i][++j])
-            if (data->map.map[i][j] == 'N' || data->map.map[i][j] == 'S' || data->map.map[i][j] == 'E' || data->map.map[i][j] == 'W')
-            {
-                data->map.player_pos.y = i;
-                data->map.player_pos.x = j;
-                data->map.player_pos.dir = data->map.map[i][j];
-                return ;
-            }
+        if (data->map.map[i][j] == 'N' || data->map.map[i][j] == 'S' || data->map.map[i][j] == 'E' || data->map.map[i][j] == 'W')
+        {
+            data->map.player_pos.y = i;
+            data->map.player_pos.x = j;
+            data->map.player_pos.dir = data->map.map[i][j];
+            return ;
+        }
     }
 }
 
@@ -58,11 +58,13 @@ int	is_zero(char *str)
 	int	i;
 
 	i = 0;
-	if (str[i] == '+' || str[i] == '-')
+    while (str[i] == ' ')
+        i++;
+	while (str[i] == '+' || str[i] == '-')
 		i++;
-	while (str[i] && str[i] == '0')
+	while (str[i] == '0')
 		i++;
-	if (str[i] != '\0')
+	if (str[i] != '\0' && str[i] != '\n')
 		return (0);
 	return (1);
 }
