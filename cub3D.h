@@ -107,6 +107,10 @@ typedef struct s_cub
 	int		width;
 	t_ray	ray;
 	t_data	data;
+	t_img   no_tex;
+	t_img   so_tex;
+	t_img   we_tex;
+	t_img   ea_tex;
 	int		px;
 	int		py;
 	int		pa;
