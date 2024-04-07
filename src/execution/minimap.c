@@ -20,7 +20,7 @@ void	map2d(t_cub cub, t_ray ray)
 	int		y;
 	char	**m;
 
-	m = cub.data.mp;
+	m = cub.data.map.map;
 	black(cub);
 	walls(cub, ray);
 	y = -1;

@@ -53,7 +53,7 @@ void	vertical_loop(t_cub cub, t_ray *ray)
 		mx = (int)(ray->rx) >> 6;
 		my = (int)(ray->ry) >> 6;
 		if (my >= 0 && my < cub.map_h && mx >= 0 && mx < cub.map_w
-			&& cub.data.mp[my][mx] == '1')
+			&& cub.data.map.map[my][mx] == '1')
 		{
 			ray->dof = cub.map_w;
 			ray->d_v = cos(ray->ra * (PI / 180.0)) * (ray->rx - cub.px)
@@ -108,7 +108,7 @@ void	horizontal_loop(t_cub cub, t_ray *ray)
 		mx = (int)(ray->rx) >> 6;
 		my = (int)(ray->ry) >> 6;
 		if (my >= 0 && my < cub.map_h && mx >= 0 && mx < cub.map_w
-			&& cub.data.mp[my][mx] == '1')
+			&& cub.data.map.map[my][mx] == '1')
 		{
 			ray->dof = cub.map_h;
 			ray->d_h = cos(ray->ra * (PI / 180.0)) * (ray->rx - cub.px)

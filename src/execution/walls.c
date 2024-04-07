@@ -141,6 +141,7 @@ t_img	side_texture(t_cub cub, t_ray *ray, float w)
 	}
 	return (texture);
 }
+
 int	get_color_from_image(t_img *img, int x, int y)
 {
 	char	*dst;

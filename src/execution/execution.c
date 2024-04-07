@@ -31,8 +31,8 @@ void	execution(t_data data)
 	cub.img->img = mlx_new_image(cub.mlx, W_WIDTH, W_HEIGHT);
 	cub.pa = -30;
 	start_position(&cub, &ray);
-	cub.map_h = 12;
-	cub.map_w = 12;
+	cub.map_h = cub.data.map.rows;
+	cub.map_w = cub.data.map.cols;
 	cub.ray = ray;
 	init_img(cub);
 	init_textures(&data, &cub);
@@ -51,34 +51,19 @@ void	init_img(t_cub cub)
 
 void	start_position(t_cub *cub, t_ray *ray)
 {
-	int		x;
-	int		y;
-	char	**map;
+	
+	cub->px = cub->data.map.player_pos.x * MAP_SCALE + MAP_SCALE / 2;
+	cub->py = cub->data.map.player_pos.y * MAP_SCALE + MAP_SCALE / 2;
+	if (cub->data.map.player_pos.dir == 'N')
+		ray->angle = 270;
+	if (cub->data.map.player_pos.dir == 'S')
+		ray->angle = 90;
+	if (cub->data.map.player_pos.dir == 'E')
+		ray->angle = 0;
+	if (cub->data.map.player_pos.dir == 'W')
+		ray->angle = 180;
 
-	map = cub->data.mp;
-	y = -1;
-	while (map[++y])
-	{
-		x = -1;
-		while (map[y][++x])
-		{
-			if (map[y][x] == 'N' || map[y][x] == 'S'
-				|| map[y][x] == 'E' || map[y][x] == 'W')
-			{
-				cub->px = x * MAP_SCALE + MAP_SCALE / 2;
-				cub->py = y * MAP_SCALE + MAP_SCALE / 2;
-				if (map[y][x] == 'N')
-					ray->angle = 270;
-				if (map[y][x] == 'S')
-					ray->angle = 90;
-				if (map[y][x] == 'E')
-					ray->angle = 0;
-				if (map[y][x] == 'W')
-					ray->angle = 180;
-				map[y][x] = '0';
-			}
-		}
-	}
+
 }
 
 void    init_textures(t_data *data, t_cub *cub)

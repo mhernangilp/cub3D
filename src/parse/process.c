@@ -79,9 +79,9 @@ static void process_color(char *line, t_data *data)
 	colorRGB.R = ft_atoi(colors[0]);
 	colorRGB.G = ft_atoi(colors[1]);
 	colorRGB.B = ft_atoi(colors[2]);
-	if ((colorRGB.R == 0 && !is_zero(colors[0])) || (colorRGB.G == 0 && !is_zero(colors[1]))
+	/*if ((colorRGB.R == 0 && !is_zero(colors[0])) || (colorRGB.G == 0 && !is_zero(colors[1]))
 		|| (colorRGB.B == 0 && !is_zero(colors[2])))
-		exit_mssg("WRONG MAP: invalid colors\n");
+		exit_mssg("WRONG MAP: invalid colors\n");*/
 	if (colorRGB.R < 0 || colorRGB.R > 255 || colorRGB.G < 0
 		|| colorRGB.G > 255 || colorRGB.B < 0 || colorRGB.B > 255)
         exit_mssg("WRONG MAP: invalid colors\n");
