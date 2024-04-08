@@ -27,7 +27,7 @@
 # define W_HEIGHT 675
 # define PI 3.1415926535
 
-#define SQR_SIZE 10
+#define SQR_SIZE 18
 #define MAP_SCALE 64 //map cube size
 #define IMG_SCALE 32
 
@@ -91,6 +91,14 @@ typedef struct s_img
 	int		line;
 	int		end;
 }	t_img;
+
+typedef struct s_draw
+{
+	int	x;
+	int	y;
+	int	len;
+	int	color;
+}	t_draw;
 
 typedef struct s_brsh
 {

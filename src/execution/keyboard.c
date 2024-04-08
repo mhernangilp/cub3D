@@ -65,22 +65,22 @@ static void	wasd(t_cub *cub, int key)
 {
 	if (key == 0)
 	{
-		cub->px += 10 * sin(cub->ray.angle * (M_PI / 180.0));
-		cub->py += 10 * -cos(cub->ray.angle * (M_PI / 180.0));
+		cub->px += 20 * sin(cub->ray.angle * (M_PI / 180.0));
+		cub->py += 20 * -cos(cub->ray.angle * (M_PI / 180.0));
 	}
 	if (key == 2)
 	{
-		cub->px += 10 * -sin(cub->ray.angle * (M_PI / 180.0));
-		cub->py += 10 * cos(cub->ray.angle * (M_PI / 180.0));
+		cub->px += 20 * -sin(cub->ray.angle * (M_PI / 180.0));
+		cub->py += 20 * cos(cub->ray.angle * (M_PI / 180.0));
 	}
 	if (key == 13)
 	{
-		cub->px += 10 * cos(cub->ray.angle * (M_PI / 180.0));
-		cub->py += 10 * sin(cub->ray.angle * (M_PI / 180.0));
+		cub->px += 20 * cos(cub->ray.angle * (M_PI / 180.0));
+		cub->py += 20 * sin(cub->ray.angle * (M_PI / 180.0));
 	}
 	if (key == 1)
 	{
-		cub->px += 10 * -cos(cub->ray.angle * (M_PI / 180.0));
-		cub->py += 10 * -sin(cub->ray.angle * (M_PI / 180.0));
+		cub->px += 20 * -cos(cub->ray.angle * (M_PI / 180.0));
+		cub->py += 20 * -sin(cub->ray.angle * (M_PI / 180.0));
 	}
 }
