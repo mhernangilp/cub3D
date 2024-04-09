@@ -15,7 +15,7 @@
 void	rd_angle(t_ray *ray, int pa, int i, float w);
 //t_img	side_texture(t_cub cub, t_ray *ray, float w);
 void	draw(t_cub cub, t_ray *ray, float reverse);
-void	draw_vertical_line(t_cub cub, t_draw draw, int color);
+void	draw_vertical_line(t_cub cub, t_draw draw);
 int		get_color_from_image(t_img *img, int x, int y);
 
 void	walls(t_cub cub, t_ray ray)
@@ -52,21 +52,22 @@ void	draw(t_cub cub, t_ray *ray, float reverse)
 	draw.x = reverse * 20;
 	draw.y = (W_HEIGHT / 2) - ((MAP_SCALE * 1150) / ray->d_h / 2);
 	draw.len = (MAP_SCALE * 1150) / ray->d_h;
-	draw_vertical_line(cub, draw, ray->color);
+	draw_vertical_line(cub, draw);
 }
 
-void draw_vertical_line(t_cub cub, t_draw draw, int color)
+void draw_vertical_line(t_cub cub, t_draw draw)
 {
 	int i;
-	//int x;
-	//int y;
+	int x;
+	int y;
+	int color;
 
 	i = -1;
 	while (++i <= draw.len)
 	{
-		/*x = draw.x / 37.5;
-		y = (draw.y + i) / 20;
-		color = get_color_from_image(&cub.no_tex, x, y);*/
+		x = draw.x / 37.5;
+		y = (i * 32) / draw.len;
+		color = get_color_from_image(&cub.no_tex, x, y++);
 		set_pixel(cub.img, draw.x, draw.y + i, color);
 	}
 }
