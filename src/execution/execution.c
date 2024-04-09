@@ -74,8 +74,8 @@ void    init_textures(t_data *data, t_cub *cub)
 	cub->ea_tex = new_texture(cub, data->EA, 32, 32);*/
 	cub->no_tex = new_texture(cub, "textures/n.xpm", 32, 32);
 	cub->so_tex = new_texture(cub, "textures/n.xpm", 32, 32);
-	cub->we_tex = new_texture(cub, "textures/n.xpm", 32, 32);
-	cub->ea_tex = new_texture(cub, "textures/n.xpm", 32, 32);
+	cub->we_tex = new_texture(cub, "textures/h.xpm", 32, 32);
+	cub->ea_tex = new_texture(cub, "textures/h.xpm", 32, 32);
 	(void) data;
 }
 

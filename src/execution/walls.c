@@ -15,7 +15,7 @@
 void	rd_angle(t_ray *ray, int pa, int i, float w);
 //t_img	side_texture(t_cub cub, t_ray *ray, float w);
 void	draw(t_cub cub, t_ray *ray, float reverse);
-void	draw_vertical_line(t_cub cub, t_draw draw);
+void	draw_vertical_line(t_cub *cub, t_draw draw, t_ray *ray);
 int		get_color_from_image(t_img *img, int x, int y);
 
 void	walls(t_cub cub, t_ray ray)
@@ -52,23 +52,32 @@ void	draw(t_cub cub, t_ray *ray, float reverse)
 	draw.x = reverse * 20;
 	draw.y = (W_HEIGHT / 2) - ((MAP_SCALE * 1150) / ray->d_h / 2);
 	draw.len = (MAP_SCALE * 1150) / ray->d_h;
-	draw_vertical_line(cub, draw);
+	draw_vertical_line(&cub, draw, ray);
 }
 
-void draw_vertical_line(t_cub cub, t_draw draw)
+void draw_vertical_line(t_cub *cub, t_draw draw, t_ray *ray)
 {
 	int i;
 	int x;
 	int y;
 	int color;
-
+		
 	i = -1;
 	while (++i <= draw.len)
 	{
-		x = draw.x / 37.5;
+		x = draw.x * 31 / draw.len;
+		while (x > 31)
+			x -= 32;
 		y = (i * 32) / draw.len;
-		color = get_color_from_image(&cub.no_tex, x, y++);
-		set_pixel(cub.img, draw.x, draw.y + i, color);
+		if (y > 31)
+			y = 31;
+		if (ray->look == 1)
+			color = get_color_from_image(&cub->no_tex, x, y++);
+		else if (ray->look == 2)
+			color = get_color_from_image(&cub->so_tex, x, y++);
+		else
+			color = get_color_from_image(&cub->we_tex, x, y++);
+		set_pixel(cub->img, draw.x, draw.y + i, color);
 	}
 }
 
@@ -84,23 +93,23 @@ void	rd_angle(t_ray *ray, int pa, int i, float w)
 	if (i == 1)
 	{
 		if ((ag > 180 && ag < 360) || (ag < 0 && ag > -180))
-			ray->color = 0x000000; //textura norte
+			ray->look = 1; //textura norte
 		else if ((ag > 0 && ag < 180) || (ag < -180 && ag > -360))
-			ray->color = 0xFFFFFF; //textura sur
+			ray->look = 2; //textura sur
 		else if (ag == 180 || ag == -180 || ag == 0 || ag == 360 || ag == -360)
-			ray->look = 3;
+			ray->look = 5;
 	}
 	else
 	{
 		if ((ag > -90 && ag < 90) || (ag < -270 && ag > -361)
 			|| (ag > 270 && ag < 361))
-			ray->color = 0xFFF000; //textura este
+			ray->look = 3; //textura este
 		else if ((ag > 90 && ag < 270) || (ag < -90 && ag > -270))
-			ray->color = 0x000FFF; //textura oeste
+			ray->look = 4; //textura oeste
 		else if (ag == 90 || ag == -270 || ag == 270 || ag == -90)
-			ray->look = 3;
+			ray->look = 5;
 	}
-	if (ray->look == 3)
+	if (ray->look == 5)
 		printf("ray->look: %d\n", ray->look);
 }
 /*
