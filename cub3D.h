@@ -27,7 +27,7 @@
 # define W_HEIGHT 800
 # define PI 3.1415926535
 
-#define SQR_SIZE 18
+#define SQR_SIZE 15
 #define MAP_SCALE 64 //map cube size
 #define IMG_SCALE 32
 

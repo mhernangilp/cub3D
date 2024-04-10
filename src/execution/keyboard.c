@@ -63,24 +63,59 @@ static int	keyb(int key, t_cub *cub)
 
 static void	wasd(t_cub *cub, int key)
 {
-	if (key == 0)
+	int		stop_x;
+	int		stop_y;
+	int		i;
+
+	stop_x = cub->px;
+	stop_y = cub->py;
+	i = 0;
+	while (++i < 40)
 	{
-		cub->px += 20 * sin(cub->ray.angle * (M_PI / 180.0));
-		cub->py += 20 * -cos(cub->ray.angle * (M_PI / 180.0));
+		if (key == 0)
+		{
+			stop_x = cub->px + (i * sin(cub->ray.angle * (M_PI / 180.0)));
+			stop_y = cub->py + (i * -cos(cub->ray.angle * (M_PI / 180.0)));
+		}
+		if (key == 2)
+		{
+			stop_x = cub->px + (i * -sin(cub->ray.angle * (M_PI / 180.0)));
+			stop_y = cub->py + (i * cos(cub->ray.angle * (M_PI / 180.0)));
+		}
+		if (key == 13)
+		{
+			stop_x = cub->px + (i * cos(cub->ray.angle * (M_PI / 180.0)));
+			stop_y = cub->py + (i * sin(cub->ray.angle * (M_PI / 180.0)));
+		}
+		if (key == 1)
+		{
+			stop_x = cub->px + (i * -cos(cub->ray.angle * (M_PI / 180.0)));
+			stop_y = cub->py + (i * -sin(cub->ray.angle * (M_PI / 180.0)));
+		}
+		if ((cub->data.map.map[(int)floor(stop_y / MAP_SCALE)][(int)(stop_x / MAP_SCALE)] == '1')
+			&& (cub->data.map.map[(int)(stop_y / MAP_SCALE)][(int)floor(stop_x / MAP_SCALE)] == '1'))
+			return ;
 	}
-	if (key == 2)
+	if (cub->data.map.map[(int)floor(stop_y / MAP_SCALE)][(int)(stop_x / MAP_SCALE)] != '1')
 	{
-		cub->px += 20 * -sin(cub->ray.angle * (M_PI / 180.0));
-		cub->py += 20 * cos(cub->ray.angle * (M_PI / 180.0));
+		if (key == 0)
+			cub->px += 20 * sin(cub->ray.angle * (M_PI / 180.0));
+		if (key == 2)
+			cub->px += 20 * -sin(cub->ray.angle * (M_PI / 180.0));
+		if (key == 13)
+			cub->px += 20 * cos(cub->ray.angle * (M_PI / 180.0));
+		if (key == 1)
+			cub->px += 20 * -cos(cub->ray.angle * (M_PI / 180.0));
 	}
-	if (key == 13)
+	if (cub->data.map.map[(int)(stop_y / MAP_SCALE)][(int)floor(stop_x / MAP_SCALE)] != '1')
 	{
-		cub->px += 20 * cos(cub->ray.angle * (M_PI / 180.0));
-		cub->py += 20 * sin(cub->ray.angle * (M_PI / 180.0));
-	}
-	if (key == 1)
-	{
-		cub->px += 20 * -cos(cub->ray.angle * (M_PI / 180.0));
-		cub->py += 20 * -sin(cub->ray.angle * (M_PI / 180.0));
+		if (key == 0)
+			cub->py += 20 * -cos(cub->ray.angle * (M_PI / 180.0));
+		if (key == 2)
+			cub->py += 20 * cos(cub->ray.angle * (M_PI / 180.0));
+		if (key == 13)
+			cub->py += 20 * sin(cub->ray.angle * (M_PI / 180.0));
+		if (key == 1)
+			cub->py += 20 * -sin(cub->ray.angle * (M_PI / 180.0));
 	}
 }
