@@ -24,7 +24,7 @@
 # define MAX 2147483647
 # define MIN -2147483648
 # define W_WIDTH 1200
-# define W_HEIGHT 675
+# define W_HEIGHT 800
 # define PI 3.1415926535
 
 #define SQR_SIZE 18
@@ -98,6 +98,7 @@ typedef struct s_draw
 	int	y;
 	int	len;
 	int	color;
+	t_img	texture;
 }	t_draw;
 
 typedef struct s_brsh

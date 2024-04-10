@@ -12,10 +12,9 @@
 
 #include "../../cub3D.h"
 
-void	rd_angle(t_ray *ray, int pa, int i, float w);
-//t_img	side_texture(t_cub cub, t_ray *ray, float w);
+t_img	side_texture(t_cub cub, t_ray *ray, float w, int i);
 void	draw(t_cub cub, t_ray *ray, float reverse);
-void	draw_vertical_line(t_cub *cub, t_draw draw, t_ray *ray);
+void	draw_vertical_line(t_cub *cub, t_draw draw);
 int		get_color_from_image(t_img *img, int x, int y);
 
 void	walls(t_cub cub, t_ray ray)
@@ -45,17 +44,17 @@ void	draw(t_cub cub, t_ray *ray, float reverse)
 		ray->rx = ray->vx;
 		ray->ry = ray->vy;
 		ray->d_h = ray->d_v;
-		rd_angle(ray, cub.pa, 0, reverse);
+		draw.texture = side_texture(cub, ray, reverse, 0);
 	}
 	else
-		rd_angle(ray, cub.pa, 1, reverse);
+		draw.texture = side_texture(cub, ray, reverse, 1);
 	draw.x = reverse * 20;
 	draw.y = (W_HEIGHT / 2) - ((MAP_SCALE * 1150) / ray->d_h / 2);
 	draw.len = (MAP_SCALE * 1150) / ray->d_h;
-	draw_vertical_line(&cub, draw, ray);
+	draw_vertical_line(&cub, draw);
 }
 
-void draw_vertical_line(t_cub *cub, t_draw draw, t_ray *ray)
+void draw_vertical_line(t_cub *cub, t_draw draw)
 {
 	int i;
 	int x;
@@ -71,61 +70,12 @@ void draw_vertical_line(t_cub *cub, t_draw draw, t_ray *ray)
 		y = (i * 32) / draw.len;
 		if (y > 31)
 			y = 31;
-		if (ray->look == 1)
-			color = get_color_from_image(&cub->no_tex, x, y++);
-		else if (ray->look == 2)
-			color = get_color_from_image(&cub->so_tex, x, y++);
-		else
-			color = get_color_from_image(&cub->we_tex, x, y++);
+		color = get_color_from_image(&draw.texture, x, y++);
 		set_pixel(cub->img, draw.x, draw.y + i, color);
 	}
 }
 
-void	rd_angle(t_ray *ray, int pa, int i, float w)
-{
-	int	ag;
-
-	ag = ray->angle + pa + w;
-	if (ag > 360)
-		ag -= 360;
-	if (ag < -360)
-		ag += 360;
-	if (i == 1)
-	{
-		if ((ag > 180 && ag < 360) || (ag < 0 && ag > -180))
-			ray->look = 1; //textura norte
-		else if ((ag > 0 && ag < 180) || (ag < -180 && ag > -360))
-			ray->look = 2; //textura sur
-		else if (ag == 180 || ag == -180 || ag == 0 || ag == 360 || ag == -360)
-			ray->look = 5;
-	}
-	else
-	{
-		if ((ag > -90 && ag < 90) || (ag < -270 && ag > -361)
-			|| (ag > 270 && ag < 361))
-			ray->look = 3; //textura este
-		else if ((ag > 90 && ag < 270) || (ag < -90 && ag > -270))
-			ray->look = 4; //textura oeste
-		else if (ag == 90 || ag == -270 || ag == 270 || ag == -90)
-			ray->look = 5;
-	}
-	if (ray->look == 5)
-		printf("ray->look: %d\n", ray->look);
-}
-/*
-void	draw(t_cub cub, t_ray *ray, float reverse)
-{
-	t_draw	draw;
-	t_img   texture;
-
-	texture = side_texture(cub, ray, reverse);
-	draw.x = reverse * 20;
-	draw.y = (W_HEIGHT / 2) - ((MAP_SCALE * 1150) / ray->d_h / 2);
-	draw.len = (MAP_SCALE * 1150) / ray->d_h;
-	draw_vertical_line(draw, cub.img, ray->color);
-}
-
-t_img	side_texture(t_cub cub, t_ray *ray, float w)
+t_img	side_texture(t_cub cub, t_ray *ray, float w, int i)
 {
 	int	ag;
 	t_img   texture;
@@ -135,11 +85,8 @@ t_img	side_texture(t_cub cub, t_ray *ray, float w)
 		ag -= 360;
 	if (ag < -360)
 		ag += 360;
-	if (ray->d_v < ray->d_h)
+	if (i == 1)
 	{
-		ray->rx = ray->vx;
-		ray->ry = ray->vy;
-		ray->d_h = ray->d_v;
 		if ((ag > 180 && ag < 360) || (ag < 0 && ag > -180))
 			texture = cub.no_tex;
 		else
@@ -154,7 +101,7 @@ t_img	side_texture(t_cub cub, t_ray *ray, float w)
 			texture = cub.we_tex;
 	}
 	return (texture);
-}*/
+}
 
 int	get_color_from_image(t_img *img, int x, int y)
 {
