@@ -12,10 +12,8 @@
 
 #include "../../cub3D.h"
 
-t_img	side_texture(t_cub cub, t_ray *ray, float w, int i);
 void	draw(t_cub cub, t_ray *ray, float reverse);
 void	draw_vertical_line(t_cub *cub, t_draw draw, t_ray *ray);
-int		get_color_from_image(t_img *img, int x, int y);
 
 void	walls(t_cub cub, t_ray ray)
 {
@@ -54,12 +52,12 @@ void	draw(t_cub cub, t_ray *ray, float reverse)
 	draw_vertical_line(&cub, draw, ray);
 }
 
-void draw_vertical_line(t_cub *cub, t_draw draw, t_ray *ray)
+void	draw_vertical_line(t_cub *cub, t_draw draw, t_ray *ray)
 {
-	int i;
-	float x;
-	int y;
-	int color;
+	float	x;
+	int		y;
+	int		color;
+	int		i;
 
 	x = ray->rx / 64 * 32;
 	if (ray->d_h == ray->d_v)
@@ -76,46 +74,4 @@ void draw_vertical_line(t_cub *cub, t_draw draw, t_ray *ray)
 		if (draw.y + i <= W_HEIGHT && draw.y + i >= 0)
 			set_pixel(cub->img, draw.x, draw.y + i, color);
 	}
-}
-
-t_img	side_texture(t_cub cub, t_ray *ray, float w, int i)
-{
-	int	ag;
-	t_img   texture;
-
-	ag = ray->angle + cub.pa + w;
-	if (ag > 360)
-		ag -= 360;
-	if (ag < -360)
-		ag += 360;
-	if (i == 1)
-	{
-		if ((ag > 180 && ag < 360) || (ag < 0 && ag > -180))
-			texture = cub.no_tex;
-		else
-			texture = cub.so_tex;
-	}
-	else
-	{
-		if ((ag > -90 && ag < 90) || (ag < -270 && ag > -361)
-			|| (ag > 270 && ag < 361))
-			texture = cub.ea_tex;
-		else
-			texture = cub.we_tex;
-	}
-	return (texture);
-}
-
-int	get_color_from_image(t_img *img, int x, int y)
-{
-	char	*dst;
-	int		length;
-	int		bpp;
-
-	if (x < 0 || y < 0 || x >= 32 || y >= 32)
-		return (0);
-	length = img->line;
-	bpp = img->bits;
-	dst = img->addr + (y * length + x * (bpp / 8));
-	return (*(unsigned int *)dst);
 }

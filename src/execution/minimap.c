@@ -12,7 +12,7 @@
 
 #include "../../cub3D.h"
 
-void	black(t_cub cub);
+void	f_c(t_cub cub);
 
 void	map2d(t_cub cub, t_ray ray)
 {
@@ -21,7 +21,7 @@ void	map2d(t_cub cub, t_ray ray)
 	char	**m;
 
 	m = cub.data.map.map;
-	black(cub);
+	f_c(cub);
 	walls(cub, ray);
 	y = -1;
 	while (m[++y])
@@ -80,7 +80,7 @@ void	player(t_cub cub, t_ray ray)
 	}
 }
 
-void	black(t_cub cub)
+void	f_c(t_cub cub)
 {
 	int	x;
 	int	y;

@@ -22,6 +22,7 @@ void	window(t_cub *cub)
 	mlx_hook(cub->win, 17, 1L < 17, &exkey, cub);
 	mlx_loop(cub->mlx);
 	mlx_destroy_image(cub->mlx, cub->img->img);
+	free(cub->img);
 	mlx_destroy_window(cub->mlx, cub->win);
 	free(cub->mlx);
 }
@@ -29,6 +30,7 @@ void	window(t_cub *cub)
 static int	exkey(t_cub	*cub)
 {
 	mlx_destroy_image(cub->mlx, cub->img->img);
+	free(cub->img);
 	mlx_destroy_window(cub->mlx, cub->win);
 	cub->win = NULL;
 	exit(1);
@@ -38,6 +40,8 @@ static int	keyb(int key, t_cub *cub)
 {
 	if (key == 53)
 	{
+		mlx_destroy_image(cub->mlx, cub->img->img);
+		free(cub->img);
 		mlx_destroy_window(cub->mlx, cub->win);
 		cub->win = NULL;
 		exit(1);
@@ -92,11 +96,14 @@ static void	wasd(t_cub *cub, int key)
 			stop_x = cub->px + (i * -cos(cub->ray.angle * (M_PI / 180.0)));
 			stop_y = cub->py + (i * -sin(cub->ray.angle * (M_PI / 180.0)));
 		}
-		if ((cub->data.map.map[(int)floor(stop_y / MAP_SCALE)][(int)(stop_x / MAP_SCALE)] == '1')
-			&& (cub->data.map.map[(int)(stop_y / MAP_SCALE)][(int)floor(stop_x / MAP_SCALE)] == '1'))
+		if ((cub->data.map.map[(int)floor(stop_y / MAP_SCALE)]
+				[(int)(stop_x / MAP_SCALE)] == '1')
+			&& (cub->data.map.map[(int)(stop_y / MAP_SCALE)]
+			[(int)floor(stop_x / MAP_SCALE)] == '1'))
 			return ;
 	}
-	if (cub->data.map.map[(int)floor(stop_y / MAP_SCALE)][(int)(stop_x / MAP_SCALE)] != '1')
+	if (cub->data.map.map[(int)floor(stop_y / MAP_SCALE)]
+		[(int)(stop_x / MAP_SCALE)] != '1')
 	{
 		if (key == 0)
 			cub->px += 20 * sin(cub->ray.angle * (M_PI / 180.0));
@@ -107,7 +114,8 @@ static void	wasd(t_cub *cub, int key)
 		if (key == 1)
 			cub->px += 20 * -cos(cub->ray.angle * (M_PI / 180.0));
 	}
-	if (cub->data.map.map[(int)(stop_y / MAP_SCALE)][(int)floor(stop_x / MAP_SCALE)] != '1')
+	if (cub->data.map.map[(int)(stop_y / MAP_SCALE)]
+		[(int)floor(stop_x / MAP_SCALE)] != '1')
 	{
 		if (key == 0)
 			cub->py += 20 * -cos(cub->ray.angle * (M_PI / 180.0));

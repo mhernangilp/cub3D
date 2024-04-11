@@ -1,7 +1,7 @@
-NO ./textures/textureNO
-SO ./textures/textureSO
-WE ./textures/textureWE
-EA ./textures/textureEA
+NO ./textures/books.xpm
+SO ./textures/books.xpm
+WE ./textures/wood.xpm
+EA ./textures/wood.xpm
 
 F 220,100,0
 C 225,30,0
