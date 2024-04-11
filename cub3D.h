@@ -94,8 +94,8 @@ typedef struct s_img
 
 typedef struct s_draw
 {
-	int	x;
-	int	y;
+	float	x;
+	float	y;
 	int	len;
 	int	color;
 	t_img	texture;

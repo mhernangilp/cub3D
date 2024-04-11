@@ -14,7 +14,7 @@
 
 t_img	side_texture(t_cub cub, t_ray *ray, float w, int i);
 void	draw(t_cub cub, t_ray *ray, float reverse);
-void	draw_vertical_line(t_cub *cub, t_draw draw);
+void	draw_vertical_line(t_cub *cub, t_draw draw, t_ray *ray);
 int		get_color_from_image(t_img *img, int x, int y);
 
 void	walls(t_cub cub, t_ray ray)
@@ -51,27 +51,30 @@ void	draw(t_cub cub, t_ray *ray, float reverse)
 	draw.x = reverse * 20;
 	draw.y = (W_HEIGHT / 2) - ((MAP_SCALE * 1150) / ray->d_h / 2);
 	draw.len = (MAP_SCALE * 1150) / ray->d_h;
-	draw_vertical_line(&cub, draw);
+	draw_vertical_line(&cub, draw, ray);
 }
 
-void draw_vertical_line(t_cub *cub, t_draw draw)
+void draw_vertical_line(t_cub *cub, t_draw draw, t_ray *ray)
 {
 	int i;
-	int x;
+	float x;
 	int y;
 	int color;
-		
+
+	x = ray->rx / 64 * 32;
+	if (ray->d_h == ray->d_v)
+		x = ray->ry / 64 * 32;
+	while (x > 31)
+		x -= 32;
 	i = -1;
 	while (++i <= draw.len)
 	{
-		x = draw.x * 31 / draw.len;
-		while (x > 31)
-			x -= 32;
 		y = (i * 32) / draw.len;
 		if (y > 31)
 			y = 31;
 		color = get_color_from_image(&draw.texture, x, y++);
-		set_pixel(cub->img, draw.x, draw.y + i, color);
+		if (draw.y + i <= W_HEIGHT && draw.y + i >= 0)
+			set_pixel(cub->img, draw.x, draw.y + i, color);
 	}
 }
 
