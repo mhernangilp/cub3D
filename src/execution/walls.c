@@ -73,5 +73,7 @@ void	draw_vertical_line(t_cub *cub, t_draw draw, t_ray *ray)
 		color = get_color_from_image(&draw.texture, x, y++);
 		if (draw.y + i <= W_HEIGHT && draw.y + i >= 0)
 			set_pixel(cub->img, draw.x, draw.y + i, color);
+		if (draw.x > 91.0 && draw.x < 93.0)
+			set_pixel(cub->img, 93, draw.y + i, color);
 	}
 }
