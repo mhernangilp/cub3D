@@ -90,6 +90,8 @@ typedef struct s_img
 	int		bits;
 	int		line;
 	int		end;
+	int		w;
+	int		h;
 }	t_img;
 
 typedef struct s_draw
@@ -175,7 +177,7 @@ void	vertical(t_cub cub, t_ray *ray);
 void	horizontal(t_cub cub, t_ray *ray);
 
 t_img	side_texture(t_cub cub, t_ray *ray, float w, int i);
-t_img	new_texture(t_cub *cub, char *path, int width, int height);
+t_img	new_texture(t_cub *cub, char *path);
 void    init_textures(t_data *data, t_cub *cub);
 int		get_color_from_image(t_img *img, int x, int y);
 

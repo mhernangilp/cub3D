@@ -1,6 +1,6 @@
 NO ./textures/books.xpm
-SO ./textures/books.xpm
-WE ./textures/wood.xpm
+SO ./textures/chiseled.xpm
+WE ./textures/smooth.xpm
 EA ./textures/wood.xpm
 
 F 220,100,0

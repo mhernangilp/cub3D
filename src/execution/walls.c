@@ -59,17 +59,17 @@ void	draw_vertical_line(t_cub *cub, t_draw draw, t_ray *ray)
 	int		color;
 	int		i;
 
-	x = ray->rx / 64 * 32;
+	x = ray->rx / 64 * draw.texture.w;
 	if (ray->d_h == ray->d_v)
-		x = ray->ry / 64 * 32;
-	while (x > 31)
-		x -= 32;
+		x = ray->ry / 64 * draw.texture.w;
+	while (x > draw.texture.w - 1)
+		x -= draw.texture.w;
 	i = -1;
 	while (++i <= draw.len)
 	{
-		y = (i * 32) / draw.len;
-		if (y > 31)
-			y = 31;
+		y = (i * draw.texture.h) / draw.len;
+		if (y > draw.texture.h - 1)
+			y = draw.texture.h - 1;
 		color = get_color_from_image(&draw.texture, x, y++);
 		if (draw.y + i <= W_HEIGHT && draw.y + i >= 0)
 			set_pixel(cub->img, draw.x, draw.y + i, color);
