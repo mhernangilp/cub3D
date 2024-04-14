@@ -172,6 +172,7 @@ void 	box(t_cub cub, int x, int y, int color);
 void 	player(t_cub cub, t_ray ray);
 
 void	walls(t_cub cub, t_ray ray);
+void	wasd(t_cub *cub, int key);
 void	vertical(t_cub cub, t_ray *ray);
 void	horizontal(t_cub cub, t_ray *ray);
 
