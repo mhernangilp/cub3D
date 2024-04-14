@@ -132,6 +132,7 @@ typedef struct s_cub
 	int		pa;
 	int		map_h;
 	int		map_w;
+	int		mouse;
 }	t_cub;
 
 void	window(t_cub *cub);

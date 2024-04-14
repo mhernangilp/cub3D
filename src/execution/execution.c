@@ -33,6 +33,7 @@ void	execution(t_data data)
 	start_position(&cub, &ray);
 	cub.map_h = cub.data.map.rows;
 	cub.map_w = cub.data.map.cols;
+	cub.mouse = 0;
 	cub.ray = ray;
 	init_img(cub);
 	init_textures(&data, &cub);
