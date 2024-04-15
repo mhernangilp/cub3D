@@ -1,7 +1,7 @@
-NO ./textures/end_stone.xpm
-SO ./textures/barrel.xpm
-WE ./textures/chese.xpm
-EA ./textures/oxidized.xpm
+NO ./textures/red_wall.xpm
+SO ./textures/red_wall.xpm
+WE ./textures/eagle.xpm
+EA ./textures/eagle.xpm
 
 F 220,100,0
 C 225,30,0
