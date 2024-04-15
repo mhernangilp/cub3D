@@ -2,15 +2,17 @@
 
 void	init_textures(t_data *data, t_cub *cub)
 {
-	cub->no_tex = new_texture(cub, data->NO, 32, 32);
-	cub->so_tex = new_texture(cub, data->SO, 32, 32);
-	cub->we_tex = new_texture(cub, data->WE, 32, 32);
-	cub->ea_tex = new_texture(cub, data->EA, 32, 32);
+	cub->no_tex = new_texture(cub, data->NO);
+	cub->so_tex = new_texture(cub, data->SO);
+	cub->we_tex = new_texture(cub, data->WE);
+	cub->ea_tex = new_texture(cub, data->EA);
 }
 
-t_img	new_texture(t_cub *cub, char *path, int width, int height)
+t_img	new_texture(t_cub *cub, char *path)
 {
 	t_img	img;
+	int		width;
+	int		height;
 
 	img.img = mlx_xpm_file_to_image(cub->mlx, path, &width, &height);
 	if (img.img == NULL)
@@ -18,6 +20,8 @@ t_img	new_texture(t_cub *cub, char *path, int width, int height)
 		printf("Error loading texture '%s'\n", path);
 		exit (1);
 	}
+	img.w = width;
+	img.h = height;
 	img.addr = mlx_get_data_addr(img.img, &img.bits,
 			&img.line, &img.end);
 	return (img);
@@ -57,7 +61,7 @@ int	get_color_from_image(t_img *img, int x, int y)
 	int		length;
 	int		bpp;
 
-	if (x < 0 || y < 0 || x >= 32 || y >= 32)
+	if (x < 0 || y < 0 || x >= img->w || y >= img->h)
 		return (0);
 	length = img->line;
 	bpp = img->bits;
