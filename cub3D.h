@@ -24,10 +24,10 @@
 # define MAX 2147483647
 # define MIN -2147483648
 # define W_WIDTH 1200
-# define W_HEIGHT 675
+# define W_HEIGHT 800
 # define PI 3.1415926535
 
-#define SQR_SIZE 10
+#define SQR_SIZE 15
 #define MAP_SCALE 64 //map cube size
 #define IMG_SCALE 32
 
@@ -92,6 +92,15 @@ typedef struct s_img
 	int		end;
 }	t_img;
 
+typedef struct s_draw
+{
+	float	x;
+	float	y;
+	int	len;
+	int	color;
+	t_img	texture;
+}	t_draw;
+
 typedef struct s_brsh
 {
 	int	x0;
@@ -123,6 +132,7 @@ typedef struct s_cub
 	int		pa;
 	int		map_h;
 	int		map_w;
+	int		mouse;
 }	t_cub;
 
 void	window(t_cub *cub);
@@ -162,8 +172,14 @@ void 	box(t_cub cub, int x, int y, int color);
 void 	player(t_cub cub, t_ray ray);
 
 void	walls(t_cub cub, t_ray ray);
+void	wasd(t_cub *cub, int key);
 void	vertical(t_cub cub, t_ray *ray);
 void	horizontal(t_cub cub, t_ray *ray);
+
+t_img	side_texture(t_cub cub, t_ray *ray, float w, int i);
+t_img	new_texture(t_cub *cub, char *path, int width, int height);
+void    init_textures(t_data *data, t_cub *cub);
+int		get_color_from_image(t_img *img, int x, int y);
 
 //gnl
 char	*get_next_line(int fd);

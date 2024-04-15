@@ -12,7 +12,7 @@
 
 #include "../../cub3D.h"
 
-void	black(t_cub cub);
+void	f_c(t_cub cub);
 
 void	map2d(t_cub cub, t_ray ray)
 {
@@ -21,7 +21,7 @@ void	map2d(t_cub cub, t_ray ray)
 	char	**m;
 
 	m = cub.data.map.map;
-	black(cub);
+	f_c(cub);
 	walls(cub, ray);
 	y = -1;
 	while (m[++y])
@@ -54,7 +54,7 @@ void	box(t_cub cub, int x, int y, int color)
 		{
 			xa = x * MAP_SCALE + s;
 			ya = y * MAP_SCALE + u;
-			set_pixel(cub.img, xa / 3, ya / 3, color);
+			set_pixel(cub.img, xa / 5, ya / 5, color);
 		}
 	}
 }
@@ -75,12 +75,12 @@ void	player(t_cub cub, t_ray ray)
 		{
 			rotated_x = (s * cos(ray.radians) - u * sin(ray.radians)) + cub.px;
 			rotated_y = (s * sin(ray.radians) + u * cos(ray.radians)) + cub.py;
-			set_pixel(cub.img, rotated_x / 3, rotated_y / 3, 0x0FF000);
+			set_pixel(cub.img, rotated_x / 5, rotated_y / 5, 0x0FF000);
 		}
 	}
 }
 
-void	black(t_cub cub)
+void	f_c(t_cub cub)
 {
 	int	x;
 	int	y;
@@ -118,10 +118,10 @@ void	throw_rays(t_cub cub, t_ray ray)
 			ray.ry = ray.vy;
 			ray.d_h = ray.d_v;
 		}
-		brsh.x0 = cub.px / 3;
-		brsh.y0 = cub.py / 3;
-		brsh.x1 = ray.rx / 3;
-		brsh.y1 = ray.ry / 3;
+		brsh.x0 = cub.px / 5;
+		brsh.y0 = cub.py / 5;
+		brsh.x1 = ray.rx / 5;
+		brsh.y1 = ray.ry / 5;
 		bresenham_line(cub, brsh, 0xFF0000);
 		r -= 0.1;
 	}
