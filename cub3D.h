@@ -134,6 +134,7 @@ typedef struct s_cub
 	int		pa;
 	int		map_h;
 	int		map_w;
+	int		mouse;
 }	t_cub;
 
 void	window(t_cub *cub);
@@ -173,6 +174,7 @@ void 	box(t_cub cub, int x, int y, int color);
 void 	player(t_cub cub, t_ray ray);
 
 void	walls(t_cub cub, t_ray ray);
+void	wasd(t_cub *cub, int key);
 void	vertical(t_cub cub, t_ray *ray);
 void	horizontal(t_cub cub, t_ray *ray);
 

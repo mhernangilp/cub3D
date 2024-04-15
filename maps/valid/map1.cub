@@ -1,7 +1,7 @@
-NO ./textures/books.xpm
-SO ./textures/chiseled.xpm
-WE ./textures/smooth.xpm
-EA ./textures/wood.xpm
+NO ./textures/end_stone.xpm
+SO ./textures/barrel.xpm
+WE ./textures/chese.xpm
+EA ./textures/oxidized.xpm
 
 F 220,100,0
 C 225,30,0
