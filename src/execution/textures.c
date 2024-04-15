@@ -61,7 +61,7 @@ int	get_color_from_image(t_img *img, int x, int y)
 	int		length;
 	int		bpp;
 
-	if (x < 0 || y < 0 || x >= 32 || y >= 32)
+	if (x < 0 || y < 0 || x >= img->w || y >= img->h)
 		return (0);
 	length = img->line;
 	bpp = img->bits;
