@@ -6,7 +6,7 @@
 /*   By: mhernang <mhernang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 15:12:49 by gfernand          #+#    #+#             */
-/*   Updated: 2024/04/16 16:57:10 by mhernang         ###   ########.fr       */
+/*   Updated: 2024/04/16 17:07:45 by mhernang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void	read_file(int fd, t_data *data)
 	}
 	if (!line)
 		exit_mssg("WRONG MAP: no map found\n");
-	if (!data -> no || !data -> so || !data -> we || !data -> EA
+	if (!data -> no || !data -> so || !data -> we || !data -> ea
 		|| data -> f == -1 || data -> c == -1)
 		exit_mssg("WRONG MAP: missing information\n");
 	process_map(fd, line, data);

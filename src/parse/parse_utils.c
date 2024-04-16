@@ -6,7 +6,7 @@
 /*   By: mhernang <mhernang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:49:59 by mhernang          #+#    #+#             */
-/*   Updated: 2024/04/16 16:57:10 by mhernang         ###   ########.fr       */
+/*   Updated: 2024/04/16 17:07:54 by mhernang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	ft_strrncmp(char *s1, char *s2, int n)
 
 int	elements_full(t_data *data)
 {
-	return (data -> no && data -> so && data -> WE
+	return (data -> no && data -> so && data -> we
 		&& data -> ea && data -> f != -1 && data -> c != -1);
 }
 

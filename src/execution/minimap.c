@@ -6,7 +6,7 @@
 /*   By: mhernang <mhernang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:50:49 by gfernand          #+#    #+#             */
-/*   Updated: 2024/04/16 16:27:39 by mhernang         ###   ########.fr       */
+/*   Updated: 2024/04/16 17:08:50 by mhernang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,14 +91,14 @@ void	f_c(t_cub cub)
 	{
 		y = -1;
 		while (++y < W_HEIGHT / 2)
-			set_pixel(cub.img, x, y, cub.data.C);
+			set_pixel(cub.img, x, y, cub.data.c);
 	}
 	x = -1;
 	while (++x < W_WIDTH)
 	{
 		y = W_HEIGHT / 2 - 1;
 		while (++y < W_HEIGHT)
-			set_pixel(cub.img, x, y, cub.data.F);
+			set_pixel(cub.img, x, y, cub.data.f);
 	}
 }
 

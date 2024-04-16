@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mhernang <mhernang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 14:26:52 by gfernand          #+#    #+#             */
-/*   Updated: 2024/04/16 14:26:54 by gfernand         ###   ########.fr       */
+/*   Updated: 2024/04/16 17:08:33 by mhernang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	init_textures(t_data *data, t_cub *cub)
 {
-	cub->no_tex = new_texture(cub, data->NO);
-	cub->so_tex = new_texture(cub, data->SO);
-	cub->we_tex = new_texture(cub, data->WE);
-	cub->ea_tex = new_texture(cub, data->EA);
+	cub->no_tex = new_texture(cub, data->no);
+	cub->so_tex = new_texture(cub, data->so);
+	cub->we_tex = new_texture(cub, data->we);
+	cub->ea_tex = new_texture(cub, data->ea);
 }
 
 t_img	new_texture(t_cub *cub, char *path)
