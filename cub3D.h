@@ -6,7 +6,7 @@
 /*   By: mhernang <mhernang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:01:44 by gfernand          #+#    #+#             */
-/*   Updated: 2024/04/07 17:27:44 by mhernang         ###   ########.fr       */
+/*   Updated: 2024/04/16 17:00:00 by mhernang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@
 # define W_HEIGHT 800
 # define PI 3.1415926535
 
-#define SQR_SIZE 15
-#define MAP_SCALE 64 //map cube size
-#define IMG_SCALE 32
+# define SQR_SIZE 15
+# define MAP_SCALE 64
+# define IMG_SCALE 32
 
 typedef struct s_player
 {
 	int		x;
 	int		y;
-	char 	dir;
+	char	dir;
 }	t_player;
 
 typedef struct s_map
@@ -48,19 +48,19 @@ typedef struct s_map
 
 typedef struct RGB
 {
-	int	R;
-	int	G;
-	int	B;
+	int	r;
+	int	g;
+	int	b;
 }	t_RGB;
 
 typedef struct data
 {
-	char	*NO;
-	char	*SO;
-	char	*WE;
-	char	*EA;
-	int		F;
-	int		C;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+	int		f;
+	int		c;
 	t_map	map;
 }	t_data;
 
@@ -98,8 +98,8 @@ typedef struct s_draw
 {
 	float	x;
 	float	y;
-	int	len;
-	int	color;
+	int		len;
+	int		color;
 	t_img	texture;
 }	t_draw;
 
@@ -115,7 +115,6 @@ typedef struct s_brsh
 	int	sy;
 }	t_brsh;
 
-
 typedef struct s_cub
 {
 	void	*mlx;
@@ -125,10 +124,10 @@ typedef struct s_cub
 	int		width;
 	t_ray	ray;
 	t_data	data;
-	t_img   no_tex;
-	t_img   so_tex;
-	t_img   we_tex;
-	t_img   ea_tex;
+	t_img	no_tex;
+	t_img	so_tex;
+	t_img	we_tex;
+	t_img	ea_tex;
 	int		px;
 	int		py;
 	int		pa;
@@ -145,23 +144,23 @@ void	error_msg(char *err);
 void	parse(char *file, t_data *data);
 
 /* PARSE_UTILS */
-void    free_map(char ***map);
-void    set_player_pos(t_data *data);
-int	ft_strrncmp(char *s1, char *s2, int n);
-int elements_full(t_data *data);
-int	is_zero(char *str);
+void	free_map(char ***map);
+void	set_player_pos(t_data *data);
+int		ft_strrncmp(char *s1, char *s2, int n);
+int		elements_full(t_data *data);
+int		is_zero(char *str);
 
 /* PROCESS */
 void	process_line(char *line, t_data *data);
 
 /* PROCESS_MAP */
-void    process_map(int fd, char *line, t_data *data);
+void	process_map(int fd, char *line, t_data *data);
 
 /* FILL_SPACES*/
-char    **fill_spaces(char **original, int rows, int *cols);
+char	**fill_spaces(char **original, int rows, int *cols);
 
 /* CHECK_BORDERS*/
-void    check_borders(t_map *map);
+void	check_borders(t_map *map);
 
 /* EXECUTION */
 void	execution(t_data data);
@@ -170,8 +169,8 @@ void	bresenham_line(t_cub cub, t_brsh brsh, int color);
 
 void	map2d(t_cub cub, t_ray ray);
 void	throw_rays(t_cub cub, t_ray ray);
-void 	box(t_cub cub, int x, int y, int color);
-void 	player(t_cub cub, t_ray ray);
+void	box(t_cub cub, int x, int y, int color);
+void	player(t_cub cub, t_ray ray);
 
 void	walls(t_cub cub, t_ray ray);
 void	wasd(t_cub *cub, int key);
@@ -180,7 +179,7 @@ void	horizontal(t_cub cub, t_ray *ray);
 
 t_img	side_texture(t_cub cub, t_ray *ray, float w, int i);
 t_img	new_texture(t_cub *cub, char *path);
-void    init_textures(t_data *data, t_cub *cub);
+void	init_textures(t_data *data, t_cub *cub);
 int		get_color_from_image(t_img *img, int x, int y);
 
 //gnl
