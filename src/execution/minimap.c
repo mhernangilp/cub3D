@@ -36,7 +36,6 @@ void	map2d(t_cub cub, t_ray ray)
 		}
 	}
 	player(cub, ray);
-	//if (cub.map_h < 30 || cub.map_w < 30)
 	throw_rays(cub, ray);
 }
 
