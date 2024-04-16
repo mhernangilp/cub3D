@@ -6,7 +6,7 @@
 /*   By: mhernang <mhernang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 15:13:32 by gfernand          #+#    #+#             */
-/*   Updated: 2024/04/16 16:10:42 by mhernang         ###   ########.fr       */
+/*   Updated: 2024/04/16 19:28:24 by mhernang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int arg, char **argv)
 {
 	t_data	data;
 
-	if (arg < 2)
+	if (arg != 2)
 		exit_mssg("Error\n2 arguments are spected\n");
 	parse(argv[1], &data);
 	execution(data);
