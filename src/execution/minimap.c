@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mhernang <mhernang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:50:49 by gfernand          #+#    #+#             */
-/*   Updated: 2024/02/20 17:50:51 by gfernand         ###   ########.fr       */
+/*   Updated: 2024/04/16 16:27:39 by mhernang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	map2d(t_cub cub, t_ray ray)
 		}
 	}
 	player(cub, ray);
+	//if (cub.map_h < 30 || cub.map_w < 30)
 	throw_rays(cub, ray);
 }
 
@@ -90,14 +91,14 @@ void	f_c(t_cub cub)
 	{
 		y = -1;
 		while (++y < W_HEIGHT / 2)
-			set_pixel(cub.img, x, y, 0x808080);
+			set_pixel(cub.img, x, y, cub.data.C);
 	}
 	x = -1;
 	while (++x < W_WIDTH)
 	{
 		y = W_HEIGHT / 2 - 1;
 		while (++y < W_HEIGHT)
-			set_pixel(cub.img, x, y, 0xBEBEBE);
+			set_pixel(cub.img, x, y, cub.data.F);
 	}
 }
 

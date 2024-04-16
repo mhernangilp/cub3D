@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mhernang <mhernang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 13:54:50 by gfernand          #+#    #+#             */
-/*   Updated: 2024/03/25 13:54:51 by gfernand         ###   ########.fr       */
+/*   Updated: 2024/04/16 15:46:39 by mhernang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ void	vertical_loop(t_cub cub, t_ray *ray)
 	int	mx;
 	int	my;
 
-	while (ray->dof < cub.map_w)
+	while (ray->dof < cub.map_w + 1)
 	{
 		mx = (int)(ray->rx) >> 6;
 		my = (int)(ray->ry) >> 6;
 		if (my >= 0 && my < cub.map_h && mx >= 0 && mx < cub.map_w
 			&& cub.data.map.map[my][mx] == '1')
 		{
-			ray->dof = cub.map_w;
+			ray->dof = cub.map_w + 1;
 			ray->d_v = cos(ray->ra * (PI / 180.0)) * (ray->rx - cub.px)
 				- sin(ray->ra * (PI / 180.0)) * (ray->ry - cub.py);
 		}
@@ -103,14 +103,14 @@ void	horizontal_loop(t_cub cub, t_ray *ray)
 	int	mx;
 	int	my;
 
-	while (ray->dof < cub.map_h)
+	while (ray->dof < cub.map_h + 1)
 	{
 		mx = (int)(ray->rx) >> 6;
 		my = (int)(ray->ry) >> 6;
 		if (my >= 0 && my < cub.map_h && mx >= 0 && mx < cub.map_w
 			&& cub.data.map.map[my][mx] == '1')
 		{
-			ray->dof = cub.map_h;
+			ray->dof = cub.map_h + 1;
 			ray->d_h = cos(ray->ra * (PI / 180.0)) * (ray->rx - cub.px)
 				- sin(ray->ra * (PI / 180.0)) * (ray->ry - cub.py);
 		}

@@ -6,7 +6,7 @@
 /*   By: mhernang <mhernang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 14:28:12 by mhernang          #+#    #+#             */
-/*   Updated: 2024/04/07 18:40:19 by mhernang         ###   ########.fr       */
+/*   Updated: 2024/04/16 15:59:18 by mhernang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ static void rgb_to_hex(char type, t_data *data, t_RGB color)
 	int	hex;
 
 	hex = (color.R << 16) | (color.G << 8) | color.B;
-	hex |= 0xFF000000;
     if (type == 'F')
         data -> F = hex;
     if (type == 'C')

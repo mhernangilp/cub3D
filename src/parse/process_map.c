@@ -6,7 +6,7 @@
 /*   By: mhernang <mhernang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 18:16:22 by mhernang          #+#    #+#             */
-/*   Updated: 2024/03/31 14:20:51 by mhernang         ###   ########.fr       */
+/*   Updated: 2024/04/16 16:20:40 by mhernang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void    process_map(int fd, char *line, t_data *data)
     {
         free(line);
         line = get_next_line(fd);
-        if (line)
+        if (line && line[0] != '\n')
         {
             add_row(&map, line);
             data->map.rows++;
@@ -60,7 +60,10 @@ static void    add_row(char ***map, char *line)
         new_map[i] = (*map)[i];
         i++;
     }
-    new_map[i] = ft_substr(line, 0, ft_strlen(line) - 1);
+    if (line[ft_strlen(line) - 1] == '\n')
+        new_map[i] = ft_substr(line, 0, ft_strlen(line) - 1);
+    else
+        new_map[i] = ft_substr(line, 0, ft_strlen(line));
     new_map[i + 1] = NULL;
     free(*map);
     *map = new_map;
