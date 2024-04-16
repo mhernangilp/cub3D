@@ -6,28 +6,32 @@
 /*   By: mhernang <mhernang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 19:29:12 by mhernang          #+#    #+#             */
-/*   Updated: 2024/04/16 17:18:52 by mhernang         ###   ########.fr       */
+/*   Updated: 2024/04/16 17:44:55 by mhernang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D.h"
 
 static char	**dup_map(t_map *original);
-static void	floodfill(char **map, t_player coord, int rows, int cols);
+static void	floodfill(char **map, int y, int x, t_player coord);
 
 void	check_borders(t_map *map)
 {
 	char		**duped_map;
+	int			i;
+	int			j;
 	t_player	coord;
 
+	coord.y = map->rows;
+	coord.x = map->cols;
 	duped_map = dup_map(map);
-	coord.y = -1;
-	while (duped_map[++coord.y])
+	i = -1;
+	while (duped_map[++i])
 	{
-		coord.x = -1;
-		while (duped_map[coord.y][++coord.x])
-			if (duped_map[coord.y][coord.x] == '0')
-				floodfill(duped_map, coord, map->rows, map->cols);
+		j = -1;
+		while (duped_map[i][++j])
+			if (duped_map[i][j] == '0')
+				floodfill(duped_map, i, j, coord);
 	}
 	free_map(&duped_map);
 }
@@ -45,16 +49,15 @@ static char	**dup_map(t_map *original)
 	return (copy);
 }
 
-static void	floodfill(char **map, t_player coord, int rows, int cols)
+static void	floodfill(char **map, int y, int x, t_player coord)
 {
-	if (coord.y < 0 || coord.x < 0 || coord.y >= rows
-		|| coord.x >= cols || map[coord.y][coord.x] == ' ')
+	if (y < 0 || x < 0 || y >= coord.y || x >= coord.x || map[y][x] == ' ')
 		exit_mssg("WRONG MAP: invalid walls configuration\n");
-	else if (map[coord.y][coord.x] == '1' || map[coord.y][coord.x] == 'F')
+	else if (map[y][x] == '1' || map[y][x] == 'F')
 		return ;
-	map[coord.y][coord.x] = 'F';
-	floodfill(map, coord, rows, cols);
-	floodfill(map, coord, rows, cols);
-	floodfill(map, coord, rows, cols);
-	floodfill(map, coord, rows, cols);
+	map[y][x] = 'F';
+	floodfill(map, y - 1, x, coord);
+	floodfill(map, y, x - 1, coord);
+	floodfill(map, y + 1, x, coord);
+	floodfill(map, y, x + 1, coord);
 }

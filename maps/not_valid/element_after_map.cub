@@ -1,6 +1,6 @@
-NO ./textures/textureNO
-SO ./textures/textureSO
-WE ./textures/textureWE
+NO ./textures/red_wall.xpm
+SO ./textures/red_wall.xpm
+WE ./textures/red_wall.xpm
 
 F 220,100,0
 C 225,30,0
@@ -20,4 +20,4 @@ C 225,30,0
 11110111 1110101 101111010001
 11111111 1111111 111111111111
 
-EA ./textures/textureEA
+EA ./textures/red_wall.xpm
