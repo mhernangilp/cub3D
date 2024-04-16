@@ -6,7 +6,7 @@
 /*   By: gfernand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 13:54:32 by gfernand          #+#    #+#             */
-/*   Updated: 2024/02/08 20:36:28 by gfernand         ###   ########.fr       */
+/*   Updated: 2024/04/16 14:26:32 by gfernand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	init_img(t_cub cub)
 }
 
 void	start_position(t_cub *cub, t_ray *ray)
-{	
+{
 	cub->px = cub->data.map.player_pos.x * MAP_SCALE + MAP_SCALE / 2;
 	cub->py = cub->data.map.player_pos.y * MAP_SCALE + MAP_SCALE / 2;
 	if (cub->data.map.player_pos.dir == 'N')
