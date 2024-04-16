@@ -68,19 +68,19 @@ typedef struct s_ray
 {
 	int		color;
 	int		angle;
-	float	radians;
+	double	radians;
 	int		look;
 	int		dof;
-	float	vx;
-	float	vy;
-	float	rx;
-	float	ry;
-	float	ra;
-	float	xo;
-	float	yo;
-	float	d_v;
-	float	d_h;
-	float	tan;
+	double	vx;
+	double	vy;
+	double	rx;
+	double	ry;
+	double	ra;
+	double	xo;
+	double	yo;
+	double	d_v;
+	double	d_h;
+	double	tan;
 }	t_ray;
 
 typedef struct s_img
