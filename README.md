@@ -66,8 +66,7 @@ $ maps/valid
 **Controls**
 
 You can use WASD to move FORWARD, LEFT, BACKWARD or RIGHT respectively.
-
-You can use the mouse or <- and -> keys to move player camera LEFT and RIGHT respectively.
+Also you can use the mouse or <- and -> keys to move player camera LEFT and RIGHT respectively.
 To quit the game press ESC or click on the red cross of window.
 
 **Maps**
